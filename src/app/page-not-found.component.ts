@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-    template: `<h2>Page Not Found.</h2>
+    template: `<div class="container">
+    <h1>Page Not Found.</h1>
              <div>
-                <button (click)="goBack()">Go Back</button>
-			        </div>`
+                <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+             </div>
+             </div>`
 })
 export class PageNotFoundComponent {
 

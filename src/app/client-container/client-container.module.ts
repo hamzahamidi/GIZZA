@@ -9,6 +9,7 @@ import { PizzaComponent } from './pizza/pizza.component';
 import { DrinkComponent } from './drink/drink.component';
 import { DessertComponent } from './dessert/dessert.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
+import { ClientFooterComponent } from './shared/client-footer/client-footer.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ClientHomeComponent } from './client-home/client-home.component';
     PizzaComponent,
     DrinkComponent,
     DessertComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    ClientFooterComponent
   ]
 })
 export class ClientContainerModule { }
