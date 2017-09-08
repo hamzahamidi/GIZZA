@@ -1,3 +1,26 @@
-*{
-  font-size: 1em;
+.navbar-nav>li {
+  float: none;
+}
+
+nav {
+  height: auto;
+}
+
+@media screen and (min-width: 767px) {
+  .navbar-nav>li {
+    float: left;
+  }
+  nav ul a {
+    font-size: 18px;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  li>a.active {
+    border-bottom: solid 3px #5d5d5d;
+  }
+}
+
+li>a.active {
+  background-color: rgb(230, 222, 212);
 }
