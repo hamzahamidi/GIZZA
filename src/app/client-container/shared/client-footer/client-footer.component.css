@@ -1,5 +1,5 @@
 footer {
-    background: url(../../../../assets/image/dark-texture.jpg);
-    background-size: 184px;
-    text-align: center;
+  background-color: #cccccc;
+  text-align: center;
+  border-radius: 10px;
 }
