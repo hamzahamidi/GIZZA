@@ -8,8 +8,9 @@ import { ClientContainerComponent } from './client-container/client-container.co
 import { PizzaComponent } from './pizza/pizza.component';
 import { DrinkComponent } from './drink/drink.component';
 import { DessertComponent } from './dessert/dessert.component';
-import { ClientHomeComponent } from './client-home/client-home.component';
+import { ClientHomeComponent } from './client-home/client-home/client-home.component';
 import { ClientFooterComponent } from './shared/client-footer/client-footer.component';
+import { CarouselComponent } from './client-home/carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ClientFooterComponent } from './shared/client-footer/client-footer.comp
     DrinkComponent,
     DessertComponent,
     ClientHomeComponent,
-    ClientFooterComponent
+    ClientFooterComponent,
+    CarouselComponent
   ]
 })
 export class ClientContainerModule { }
