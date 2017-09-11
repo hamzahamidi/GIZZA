@@ -14,7 +14,6 @@ export class CarouselComponent implements AfterViewInit {
     $(window).on('resize', function(){
       $('#myCarousel').height($('#myCarousel').width() / 3 );
     });
-
   }
 
   constructor() { }
