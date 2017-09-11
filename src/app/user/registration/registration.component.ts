@@ -1,216 +1,82 @@
-import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../shared/user';
+
+import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'app-reactive-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit, DoCheck {
+export class RegistrationComponent implements OnInit {
 
-  formValid = false;
+  userForm: FormGroup;
 
-  model = {
-    firstName : '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-    confirmPassword: ''
-  };
+  constructor(private fb: FormBuilder) {
+    this.createForm();
+  }
 
-  oldModel = {
-    firstName : '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-    confirmPassword: ''
-  };
+  createForm() {
+    this.userForm = this.fb.group({
+      firstName: ["", Validators.required ],
+      lastName : ["", Validators.compose([Validators.required, Validators.minLength(3)]) ],
+      address : ["", Validators.required ],
+      phoneNumber : ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^0[1-9]([-. ]?[0-9]{2}){4}$")
+      ])],
+      email : ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^(([^<>()[\\]\\\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$")
+      ])],
+      password : ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$")
+      ])],
+      confirm_password : ['', Validators.compose([Validators.required])]
+    }, {validator: this.matchingPassword('password', 'confirm_password')});
+  }
 
-  errMessage = {
-    firstNameErr : '',
-    lastNameErr: '',
-    emailErr: '',
-    phoneNumberErr: '',
-    passwordErr: '',
-    confirmPasswordErr: '',
-  };
+  matchingPassword(passwordKey: string, confirmPasswordKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirm_password = group.controls[confirmPasswordKey];
 
-  classModel = {
-    firstNameClass: {valid: false, invalid: true},
-    lastNameClass: {valid: false, invalid: true},
-    emailClass: {valid: false, invalid: true},
-    phoneNumberClass: {valid: false, invalid: true},
-    passwordClass: {valid: false, invalid: true},
-    confirmPasswordClass: {valid: false, invalid: true}
-  };
-
-  constructor() {}
+      if (password.value !== confirm_password.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
+    }
+  }
 
   ngOnInit() {
-    this.model.firstName = '';
-    this.oldModel.firstName = '';
-    this.model.lastName = '';
-    this.oldModel.lastName = '';
-    this.model.email = '';
-    this.oldModel.email = '';
-    this.model.phoneNumber = '';
-    this.oldModel.phoneNumber = '';
-    this.model.password = '';
-    this.oldModel.password = '';
+    $('span.passwordFormatInfo').hover(function(){
+
+        $('div.passwordFormat').position({
+          top: $(this).position().top,
+          left: $(this).position().left
+        });
+        $('div.passwordFormat').css('display', 'block');
+
+    }, function(){
+      $('div.passwordFormat').css('display', 'none');
+    });
+//    console.log($('span.passwordFormatInfo'));
   }
 
-  ngDoCheck(): void {
+  ngSubmit(){
+    let user = new User(
+      this.userForm.controls['firstName'].value,
+      this.userForm.controls['lastName'].value,
+      this.userForm.controls['address'].value,
+      this.userForm.controls['phoneNumber'].value,
+      this.userForm.controls['email'].value,
+      this.userForm.controls['password'].value
+    );
 
-    if (this.model.firstName !== this.oldModel.firstName) {
+    console.log(user);
 
-      if(this.model.firstName.trim().length > 0){
-        this.classModel.firstNameClass = {valid : true, invalid: false};
-        this.errMessage.firstNameErr = ''
-      }else{
-        this.classModel.firstNameClass = {valid : false, invalid: true};
-        this.errMessage.firstNameErr = 'Veuillez entrer votre prénom';
-      }
-
-      this.oldModel.firstName = this.model.firstName;
-    }
-
-    if (this.model.lastName !== this.oldModel.lastName) {
-
-      if(this.model.lastName.trim().length > 0){
-        this.classModel.lastNameClass = {valid : true, invalid: false};
-        this.errMessage.lastNameErr = ''
-      }else{
-        this.classModel.lastNameClass = {valid : false, invalid: true};
-        this.errMessage.lastNameErr = 'Veuillez entrer votre nom';
-      }
-
-      this.oldModel.lastName = this.model.lastName;
-    }
-
-    if (this.model.email !== this.oldModel.email) {
-
-      if(this.validateEmail(this.model.email)){
-        this.classModel.emailClass = {valid : true, invalid: false};
-        this.errMessage.emailErr = '';
-      }else{
-        this.classModel.emailClass = {valid : false, invalid: true};
-      }
-
-      this.oldModel.email = this.model.email;
-    }
-
-    if (this.model.phoneNumber !== this.oldModel.phoneNumber) {
-
-      if(this.validatePhoneNumber(this.model.phoneNumber)){
-        this.classModel.phoneNumberClass = {valid : true, invalid: false};
-        this.errMessage.phoneNumberErr = '';
-      }else{
-        this.classModel.phoneNumberClass = {valid : false, invalid: true};
-      }
-
-      this.oldModel.phoneNumber = this.model.phoneNumber;
-    }
-
-    if (this.model.password !== this.oldModel.password) {
-
-      if(this.validatePassWord(this.model.password)){
-        this.classModel.passwordClass = {valid : true, invalid: false};
-        this.errMessage.passwordErr = '';
-      }else{
-        this.classModel.passwordClass = {valid : false, invalid: true};
-      }
-
-      if(this.validateConfirmPassWord(this.model.password, this.model.confirmPassword)){
-        this.classModel.confirmPasswordClass = {valid : true, invalid: false};
-        this.errMessage.confirmPasswordErr = '';
-      }else{
-        this.classModel.confirmPasswordClass = {valid : false, invalid: true};
-        this.errMessage.confirmPasswordErr = "La confirmation doit être identique au mot de passe."
-      }
-
-      this.oldModel.password = this.model.password;
-    }
-
-    if (this.model.confirmPassword !== this.oldModel.confirmPassword) {
-
-      if(this.validateConfirmPassWord(this.model.password, this.model.confirmPassword)){
-        this.classModel.confirmPasswordClass = {valid : true, invalid: false};
-        this.errMessage.confirmPasswordErr = '';
-      }else{
-        this.classModel.confirmPasswordClass = {valid : false, invalid: true};
-      }
-
-      this.oldModel.password = this.model.password;
-    }
-
-    this.formValid = !this.classModel.firstNameClass.valid ||
-                      !this.classModel.lastNameClass.valid ||
-                      !this.classModel.emailClass.valid ||
-                      !this.classModel.passwordClass.valid ||
-                      !this.classModel.confirmPasswordClass.valid;
-
-  };
-
-  validateEmail(email) {
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
-
-  emailOnBlur(){
-    if(this.validateEmail(this.model.email)){
-      this.errMessage.emailErr = '';
-    }else{
-      this.errMessage.emailErr = 'Merci de renseigner un email valide';
-    }
-  }
-
-  validatePhoneNumber(phoneNumber) {
-    let re = /^0[1-9]([-. ]?[0-9]{2}){4}$/
-    return re.test(phoneNumber);
-  }
-
-  phoneNumberOnBlur(){
-    if(this.validatePhoneNumber(this.model.phoneNumber)){
-      this.errMessage.phoneNumberErr = '';
-    }else{
-      this.errMessage.phoneNumberErr = 'Merci de renseigner un téléphone valide';
-    }
-  }
-
-  validatePassWord(passWord) {
-    let re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/
-    return re.test(passWord);
-  }
-
-  validateConfirmPassWord(password, passwordConfirm){
-    if((password.trim().length > 0) && (passwordConfirm.trim().length > 0) && (password == passwordConfirm) ){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  passWordOnBlur(){
-    if(this.validatePassWord(this.model.password)){
-      this.errMessage.passwordErr = '';
-    }else{
-      this.errMessage.passwordErr = "Veuillez entrer un mot de passe valide";
-    }
-  }
-
-  confirmPasswordOnBlur(){
-    if(this.validateConfirmPassWord(this.model.password, this.model.confirmPassword)){
-      this.errMessage.confirmPasswordErr = '';
-    }else{
-      this.errMessage.confirmPasswordErr = "La confirmation doit être identique au mot de passe."
-    }
-  }
-
-  confirmPasswordOnFocus(){
-    this.errMessage.confirmPasswordErr = '';
-  }
-
-  onSubmit() {
   }
 }

@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 export class CarouselComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
+
     $('#myCarousel').height($('#myCarousel').width() / 3 );
     $(window).on('resize', function(){
       $('#myCarousel').height($('#myCarousel').width() / 3 );
