@@ -2,7 +2,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/image/pizza.png") center center no-repeat;
+    background: linear-gradient( rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../../assets/image/pizza.png") center center no-repeat;
     /* Ensure the html element always takes up the full height of the browser window */
     min-height: 100%;
     /* The Magic */
@@ -15,7 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(38, 38, 38);
 }
 
 .flex-grid .col {
@@ -24,7 +24,7 @@
 
 .btn-primary-outline {
     background-color: transparent;
-    border-color: #ccc;
+    border-color: #262626;
 }
 
 .title {
