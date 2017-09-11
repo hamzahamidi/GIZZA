@@ -6,115 +6,85 @@
   <div class="container">
     <div class="col-lg-offset-3 col-lg-6 jumbotron">
       <div class="row">
-        <h2>Créez votre compte</h2>
+        <h2 class="text-center">Créez votre compte</h2>
       </div>
       <div class="row">
-        <form (ngSubmit)="onSubmit()" #connexionForm="ngForm">
-
+        <form [formGroup]="userForm" (ngSubmit)="ngSubmit()">
           <div class="form-group row">
             <div class="col-lg-4 right-align">
-              <label for="firstName">Prénom</label>
+              <label class="control-label">Prénom<span class="text-danger">*</span></label>
             </div>
-            <div class="col-lg-7">
-              <input type="text" class="form-control" id="firstName"
-                     [(ngModel)]="model.firstName" name="fistName"
-                     [ngClass] = "classModel.firstNameClass"
-                     placeholder="prénom">
-              <div [hidden]="errMessage.firstNameErr.length == 0"
-                   class="alert alert-danger">
-                {{errMessage.firstNameErr}}
+            <div class="col-lg-8">
+              <input type="text" class="form-control" formControlName="firstName" placeholder="Prénom" name="firstName" required>
+              <div class="alert text-danger" *ngIf="!userForm.controls['firstName'].valid && userForm.controls['firstName'].touched">Entrez votre prénom</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">Nom<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" formControlName="lastName" placeholder="Nom" name="lastName" required>
+              <div class="alert text-danger" *ngIf="!userForm.controls['lastName'].valid && userForm.controls['lastName'].touched">Entrez votre nom</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">Adresse<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-8">
+              <textarea class="form-control" formControlName="address" placeholder="Adresse" name="address" required></textarea>
+              <div class="alert text-danger" *ngIf="!userForm.controls['address'].valid && userForm.controls['address'].touched">Entrez votre adresse</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">Téléphone<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Téléphone (ex: 06 76 25 87 17)" name="phoneNumber" required>
+              <div class="alert text-danger" *ngIf="!userForm.controls['phoneNumber'].valid && userForm.controls['phoneNumber'].touched">Entrez un téléphone valide</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">Email<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" formControlName="email" placeholder="Email" name="email" required>
+              <div class="alert text-danger" *ngIf="!userForm.controls['email'].valid && userForm.controls['email'].touched">Entrez un email valide</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">
+                Mot de passe
+                <span class="passwordFormatInfo glyphicon glyphicon-info-sign"></span>
+                <div class="passwordFormat">
+                  Au moins 6 caractères, une majuscule et un chiffre
+                </div>
+                <span class="text-danger">*</span>
+              </label>
+            </div>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" formControlName="password" placeholder="Password" name="password" required>
+              <div class="alert text-danger" *ngIf="!userForm.controls['password'].valid && userForm.controls['password'].touched">Entrez un mot de passe valide</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-4 right-align">
+              <label class="control-label">Confirmation<span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" name="confirm_password" formControlName="confirm_password" placeholder="Confirm Password" match-password="password">
+              <div class='alert text-danger' *ngIf="userForm.controls['confirm_password'].touched && userForm.hasError('mismatchedPasswords')">
+                Les mots de passe doivent être identiques
               </div>
             </div>
           </div>
-
-          <div class="form-group row">
-            <div class="col-lg-4 right-align">
-              <label for="lastName">Nom</label>
-            </div>
-            <div class="col-lg-7">
-              <input type="text" class="form-control" id="lastName"
-                     [(ngModel)]="model.lastName" name="lastName"
-                     [ngClass] = "classModel.lastNameClass"
-                     placeholder="nom">
-              <div [hidden]="errMessage.lastNameErr.length == 0"
-                   class="alert alert-danger">
-                {{errMessage.lastNameErr}}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-4 right-align">
-              <label for="email">Adresse E-mail</label>
-            </div>
-            <div class="col-lg-7">
-              <input type="text" class="form-control" id="email"
-                     [(ngModel)]="model.email" name="email"
-                     [ngClass] = "classModel.emailClass"
-                     (blur)="emailOnBlur()"
-                     placeholder="Adresse E-mail">
-              <div [hidden]="errMessage.emailErr.length == 0"
-                   class="alert alert-danger">
-                {{errMessage.emailErr}}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-4 right-align">
-              <label for="phoneNumber">Téléphone</label>
-            </div>
-            <div class="col-lg-7">
-              <input type="text" class="form-control" id="phoneNumber"
-                     [(ngModel)]="model.phoneNumber" name="phoneNumber"
-                     [ngClass] = "classModel.phoneNumberClass"
-                     (blur)="phoneNumberOnBlur()"
-                     placeholder="Numéro de téléphone">
-              <div [hidden]="errMessage.phoneNumberErr.length == 0"
-                   class="alert alert-danger">
-                {{errMessage.phoneNumberErr}}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-4 right-align">
-              <label for="password">Mot de passe</label>
-            </div>
-            <div class="col-lg-7">
-              <input type="password" class="form-control" id="password"
-                     [(ngModel)]="model.password" name="password"
-                     [ngClass] = "classModel.passwordClass"
-                     (blur)="passWordOnBlur()"
-                     placeholder="Mot de passe">
-              <div [hidden]="errMessage.passwordErr.length == 0"
-                   class="alert alert-danger">
-                {{ errMessage.passwordErr }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-lg-4 right-align">
-              <label for="confirmPassword">Confirmation</label>
-            </div>
-            <div class="col-lg-7">
-              <input type="password" class="form-control" id="confirmPassword"
-                     [(ngModel)]="model.confirmPassword" name="confirmPassword"
-                     [ngClass] = "classModel.confirmPasswordClass"
-                     (blur)="confirmPasswordOnBlur()"
-                     (focus)="confirmPasswordOnFocus()"
-                     placeholder="Mot de passe"
-                     #confirmPasswordInput = "ngModel">
-              <div [hidden]="confirmPasswordInput.pristine || errMessage.confirmPasswordErr.length == 0"
-                   class="alert alert-danger">
-                {{ errMessage.confirmPasswordErr }}
-              </div>
-
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-default" [disabled]="formValid">Submit</button>
+          <button type="submit" [disabled]="!userForm.valid" class="btn btn-default">
+            Create an account
+          </button>
         </form>
       </div>
     </div>

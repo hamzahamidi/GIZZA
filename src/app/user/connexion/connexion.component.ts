@@ -9,7 +9,10 @@ import {User} from '../../shared/user';
 })
 export class ConnexionComponent implements OnInit {
 
-  model = new User();
+  model = {
+    email: '',
+    password: ''
+  };
 
   constructor(private userDataService: UserDataService) { }
 
