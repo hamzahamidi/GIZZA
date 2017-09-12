@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ClientHomeComponent} from './client-home/client-home/client-home.component';
-import { PizzaComponent } from './pizza/pizza.component';
-import { DrinkComponent} from './drink/drink.component';
-import { DessertComponent} from './dessert/dessert.component';
+import { ItemComponent} from './item/item.component';
 import { ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 
 import { ClientContainerComponent } from './client-container/client-container.component';
@@ -15,9 +13,9 @@ export const clientContainerRoutes: Routes = [
         path: '', component: ClientContainerComponent,
         children: [
             { path: '', component: ClientHomeComponent },
-            { path: 'pizza', component: PizzaComponent },
-            { path: 'drink', component: DrinkComponent },
-            { path: 'dessert', component: DessertComponent},
+            { path: 'pizza', component: ItemComponent },
+            { path: 'drink', component: ItemComponent },
+            { path: 'dessert', component: ItemComponent},
             { path: 'shopping-cart', component: ShoppingCartComponent}
         ]
     }
