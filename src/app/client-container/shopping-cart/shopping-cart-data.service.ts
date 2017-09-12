@@ -19,7 +19,21 @@ export class ShoppingCartDataService {
   }
 
   public addShoppingItem(item: Item, quantity: number = 1){
-    this.shoppingItems.push({item: item, quantity: quantity});
+
+    let index = -1;
+
+    for(let i = 0; i < this.shoppingItems.length; i++){
+      if(this.shoppingItems[i].item.id == item.id){
+        index = i;
+        break;
+      }
+    }
+
+    if(index == -1){
+      this.shoppingItems.push({item: item, quantity: quantity});
+    }else{
+      this.shoppingItems[index].quantity += quantity;
+    }
   }
 
   public removeShoppingItem(id: number){

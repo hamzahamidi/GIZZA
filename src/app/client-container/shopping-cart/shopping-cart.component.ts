@@ -9,24 +9,26 @@ import {SHOPPINGCART, Pizza, TypeItem} from '../item/model';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  shoppingCart: any;
-  totalPrice: number;
-  couponCode: number;
+  public couponCode: string = '';
 
-  constructor(private shoppingCartDataService : ShoppingCartDataService) {}
+  constructor(public shoppingCartDataService : ShoppingCartDataService) {}
 
   ngOnInit() {
+
     this.shoppingCartDataService.setShoppingItems(SHOPPINGCART);
-    this.shoppingCart = this.shoppingCartDataService.getShoppingItems();
-    this.totalPrice = this.shoppingCartDataService.totalPrice();
-    /*
-    console.log(this.shoppingCartDataService);
+/*
+    console.log(JSON.parse(JSON.stringify(this.shoppingCartDataService.getShoppingItems())));
+
     let pizza = new Pizza(11, 'Marinara', '', 14, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803111857372.jpg', TypeItem.PIZZA);
     this.shoppingCartDataService.addShoppingItem(pizza, 3);
-    console.log(this.shoppingCartDataService);
+    console.log(JSON.parse(JSON.stringify(this.shoppingCartDataService.getShoppingItems())));
+
+    this.shoppingCartDataService.addShoppingItem(pizza, 2);
+    console.log(JSON.parse(JSON.stringify(this.shoppingCartDataService.getShoppingItems())));
+
     this.shoppingCartDataService.removeShoppingItem(6);
-    console.log(this.shoppingCartDataService);
-    */
+    console.log(JSON.parse(JSON.stringify(this.shoppingCartDataService.getShoppingItems())));
+*/
   }
 
   onCouponSubmit(){
@@ -39,7 +41,5 @@ export class ShoppingCartComponent implements OnInit {
 
   removeItem(id: number){
     this.shoppingCartDataService.removeShoppingItem(id);
-    this.shoppingCart = this.shoppingCartDataService.getShoppingItems();
-    this.totalPrice = this.shoppingCartDataService.totalPrice();
   }
 }
