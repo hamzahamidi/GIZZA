@@ -14,8 +14,36 @@ export class ShoppingCartDataService {
     return this.shoppingItems;
   }
 
-  public addShoppingItem(item: Item, quantity: number){
+  public setShoppingItems(shoppingItems: any[]){
+    this.shoppingItems = shoppingItems;
+  }
+
+  public addShoppingItem(item: Item, quantity: number = 1){
     this.shoppingItems.push({item: item, quantity: quantity});
+  }
+
+  public removeShoppingItem(id: number){
+    let index = -1;
+
+    for(let i = 0; i < this.shoppingItems.length; i++){
+      if(this.shoppingItems[i].item.id == id){
+        index = i;
+        break;
+      }
+    }
+
+    if(index >= 0){
+      this.shoppingItems.splice(index, 1);
+    }
+  }
+
+  public totalPrice(){
+    let total = 0;
+
+    for(let i = 0; i < this.shoppingItems.length; i++){
+      total = this.shoppingItems[i].item.price * this.shoppingItems[i].quantity;
+    }
+    return total;
   }
 
 }

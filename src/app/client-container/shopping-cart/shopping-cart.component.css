@@ -1,0 +1,58 @@
+div.shopping-cart{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+div.shopping-cart div.title{
+  background-color: rgba(200, 200, 200, 1.0);
+  color: white;
+  text-align: center;
+  padding: 1%;
+}
+
+div.shopping-cart div.title h3{
+  margin: 0;
+}
+
+div.shopping-cart div.totalPrice div:nth-child(2){
+  text-align: right;
+}
+
+div.shopping-cart div.totalPrice div{
+  padding: 1%;
+}
+
+div.shopping-cart div.coupon div div:nth-child(2){
+  text-align: right;
+}
+
+div.shopping-cart div.coupon div{
+  text-align: center;
+  margin-top: 10px;
+}
+
+div.shopping-cart div.coupon{
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+div.shopping-cart div.coupon form{
+  padding-top: 10px;
+  border-top: 1px dotted rgba(200, 200, 200, 1);
+}
+
+div.shopping-cart div.cart-content{
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+div.shopping-cart div.cart-content ul{
+  padding-top: 10px;
+  border-top: 1px dotted rgba(200, 200, 200, 1);
+  list-style: none;
+}
+
+div.shopping-cart div.cart-content ul li div:nth-child(1), div.shopping-cart div.cart-content ul li div:nth-child(3){
+  text-align: right;
+}
