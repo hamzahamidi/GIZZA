@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 // modules
 import { ClientContainerRoutingModule} from './client-container-routing.module';
 import { SharedModule} from '../shared/shared.module';
+import { FormsModule} from '@angular/forms';
 // components
 import { ClientHeaderComponent } from './client-header/client-header.component';
 import { ClientContainerComponent } from './client-container/client-container.component';
@@ -15,6 +16,7 @@ import { ItemComponent } from './item/item.component';
 @NgModule({
   imports: [
     ClientContainerRoutingModule,
+    FormsModule,
     SharedModule
   ],
   declarations: [

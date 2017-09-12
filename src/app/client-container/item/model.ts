@@ -112,4 +112,11 @@ export const PIZZACATEGORIES: Category[] = [
   {name: 'Sans Porc'},
   {name: 'Sans viande'},
   {name: 'Nouveau'}
-]
+];
+
+export const SHOPPINGCART: any[] = [
+  {item: PIZZAS[5], quantity: 1},
+  {item: PIZZAS[8], quantity: 3}
+];
+
+
