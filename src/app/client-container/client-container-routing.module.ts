@@ -5,6 +5,7 @@ import { ClientHomeComponent} from './client-home/client-home/client-home.compon
 import { PizzaComponent } from './pizza/pizza.component';
 import { DrinkComponent} from './drink/drink.component';
 import { DessertComponent} from './dessert/dessert.component';
+import { ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 
 import { ClientContainerComponent } from './client-container/client-container.component';
 
@@ -16,7 +17,8 @@ export const clientContainerRoutes: Routes = [
             { path: '', component: ClientHomeComponent },
             { path: 'pizza', component: PizzaComponent },
             { path: 'drink', component: DrinkComponent },
-            { path: 'dessert', component: DessertComponent}
+            { path: 'dessert', component: DessertComponent},
+            { path: 'shopping-cart', component: ShoppingCartComponent}
         ]
     }
 ];

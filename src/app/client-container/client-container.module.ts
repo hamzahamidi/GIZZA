@@ -10,7 +10,9 @@ import { DrinkComponent } from './drink/drink.component';
 import { DessertComponent } from './dessert/dessert.component';
 import { ClientHomeComponent } from './client-home/client-home/client-home.component';
 import { CarouselComponent } from './client-home/carousel/carousel.component';
-
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+// services
+import { ShoppingCartDataService } from './shopping-cart/shopping-cart-data.service';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { CarouselComponent } from './client-home/carousel/carousel.component';
     DrinkComponent,
     DessertComponent,
     ClientHomeComponent,
-    CarouselComponent
-  ]
+    CarouselComponent,
+    ShoppingCartComponent
+  ],
+  providers: [ ShoppingCartDataService ]
 })
 export class ClientContainerModule { }
