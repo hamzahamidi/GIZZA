@@ -8,7 +8,7 @@
       Produits
     </div>
     <div class="col-xs-6">
-      {{totalPrice}}€
+      {{shoppingCartDataService.totalPrice()}} €
     </div>
   </div>
   <div class="row coupon">
@@ -30,7 +30,7 @@
   </div>
   <div class="row cart-content">
     <ul>
-      <li *ngFor="let shoppingItem of shoppingCart">
+      <li *ngFor="let shoppingItem of shoppingCartDataService.getShoppingItems()">
         <div class="col-xs-2">{{shoppingItem.quantity}}x</div>
         <div class="col-xs-6">{{shoppingItem.item.title}}</div>
         <div class="col-xs-4">
