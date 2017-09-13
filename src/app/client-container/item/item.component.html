@@ -4,45 +4,45 @@
             <a href="# " type="button " class="btn btn-default ">{{cat.name}}</a>
         </div>
     </div>
-    <div class="col-md-10 col-sm-10 col-xs-12">
-        <div class="sub-container ">
-            <div class="row ">
-                <div *ngFor="let item of items " class="col-md-4 col-sm-6 col-xs-12 portfolio-item " style="margin-bottom: 15px; margin-top:15px; ">
-                    <div class="flip-container " ontouchstart="this.classList.toggle( 'hover'); ">
-                        <div class="flipper ">
-                            <div class="front ">
-                                <div class="card ">
-                                    <img class="card-img-top " src="{{item.picture}} ">
-                                    <div class="card-block ">
-                                        <h5 class="text-bold " style="text-align: center ">{{item.title}}: {{item.price}} €</h5>
-                                    </div>
+    <div class="sub-container">
+        <div class="row">
+            <div *ngFor="let item of items " class="col-lg-4 col-md-6 col-sm-6 col-xs-12 container-card ">
+                <div class="flip-container " ontouchstart="this.classList.toggle( 'hover'); ">
+                    <div class="flipper ">
+                        <div class="front ">
+                            <div class="card ">
+                                <img class="card-img-top " src="{{item.picture}} ">
+                                <div class="card-block ">
+                                    <h5 class="text-bold " style="text-align: center ">{{item.title}}: {{item.price}} €</h5>
                                 </div>
                             </div>
-                            <div class="back ">
-                                <div class="back-title ">{{item.title}}</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget quam accumsan, finibus erat id, viverra libero. Nullam erat justo, semper eget laoreet nec, pellentesque in ipsum. Donec interdum diam ut feugiat tincidunt.
-                                    Vestibulum.
-                                </p>
-                                <div class="input-group " style="width:150px; ">
-                                    <span class="input-group-btn ">
+                        </div>
+                        <div class="back ">
+                            <div class="back-title ">{{item.title}}</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget quam accumsan, finibus erat id, viverra libero. Nullam erat justo, semper eget laoreet nec, pellentesque in ipsum. Donec interdum diam ut feugiat tincidunt.
+                                Vestibulum.
+                            </p>
+                            <!-- A changer -->
+                            <div class="input-group " style="width:150px; ">
+                                <span class="input-group-btn ">
                                     <button type="button " class="btn btn-default btn-number " disabled="disabled " data-type="minus " data-field="quant[1] ">
                                         <span class="glyphicon glyphicon-minus "></span>
-                                    </button>
-                                    </span>
-                                    <input type="text " name="quant[1] " class="form-control input-number " value="3 " min="1 " max="10 ">
-                                    <span class="input-group-btn ">
+                                </button>
+                                </span>
+                                <input type="text " name="quant[1] " class="form-control input-number " value="3 " min="1 " max="10 ">
+                                <span class="input-group-btn ">
                                     <button type="button " class="btn btn-default btn-number " data-type="plus " data-field="quant[1] ">
                                         <span class="glyphicon glyphicon-plus "></span>
-                                    </button>
-                                    </span>
+                                </button>
+                                </span>
+                            </div>
+                            <!-- incrementer decrementer-->
+                            <div class="footer ">
+                                <div class="left ">
+                                    <p id="price ">30.00 €</p>
                                 </div>
-                                <div class="footer ">
-                                    <div class="left ">
-                                        <p id="price ">30.00 €</p>
-                                    </div>
-                                    <div class="right ">
-                                        <p>Ajouter au panier</p>
-                                    </div>
+                                <div class="right ">
+                                    <p>Ajouter au panier</p>
                                 </div>
                             </div>
                         </div>
@@ -50,6 +50,7 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
+        <app-shopping-cart class="shoping-card"></app-shopping-cart>
     </div>
-    <div class="col-md-2 col-sm-2 ">Panier</div>
 </div>

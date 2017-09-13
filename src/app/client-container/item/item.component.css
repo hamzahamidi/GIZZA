@@ -1,10 +1,17 @@
 .no-margin {
-    margin: 0px !important;
-    width: auto!important;
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+    width: calc(100% - 400px);
 }
 
 .sub-container {
-    text-align: -webkit-left;
+    text-align: -webkit-center;
+}
+
+.container-card {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: -webkit-center;
 }
 
 .flip-container {
@@ -145,4 +152,24 @@ h5 {
 
 .right {
     float: right;
+}
+
+.shoping-card {
+    position: fixed;
+    top: 250px;
+    right: 15px;
+    background-color: white;
+    width: 400px;
+}
+
+@media only screen and (max-width: 1500px) {
+    .sub-container {
+        text-align: -webkit-left;
+    }
+    .shoping-card {
+        display: none!important;
+    }
+    .no-margin {
+        width: 100%;
+    }
 }
