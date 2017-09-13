@@ -1,10 +1,11 @@
-.no-margin {
-    margin: 0px !important;
-    width: auto!important;
+.sub-container {
+    text-align: -webkit-center;
+    width: calc(100% - 300px);
 }
 
-.sub-container {
-    text-align: -webkit-left;
+.container-card {
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .flip-container {
@@ -145,4 +146,22 @@ h5 {
 
 .right {
     float: right;
+}
+
+.shoping-card {
+    position: fixed;
+    top: 250px;
+    right: 50px;
+    background-color: white;
+    width: 400px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .shoping-card {
+        display: none!important;
+    }
+    .sub-container {
+        text-align: -webkit-center;
+        width: 100%;
+    }
 }
