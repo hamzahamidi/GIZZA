@@ -5,11 +5,30 @@
         <img src="../../../../assets/logo/gizza_logo_595_496.jpg" alt="gizza logo">
       </a>
     </div>
-    <div class="col-xs-2">
-      <a routerLink="/user/login" routerLinkActive="active">
+    <div *ngIf="loggedInUser=='0'" class="col-xs-2">
+        <a routerLink="/user/login" routerLinkActive="active">
         <span class="glyphicon glyphicon-user"></span>
-        <span class="monCompteText">Mon compte</span>
+        <span class="monCompteText">Mon Compte</span>
       </a>
     </div>
-  </div>
+    <div *ngIf="loggedInUser!='0'" class="col-xs-2">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Bonjour {{loggedInUser}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a routerLink="/user/login" routerLinkActive="active">
+        <span class="glyphicon glyphicon-user"></span>
+        <span class="monCompteText">Mon Compte</span>
+      </a></li>
+    <li role="separator" class="divider"></li>
+    <li><a routerLink="/user/login" routerLinkActive="active">
+        <span class="glyphicon glyphicon-off"></span>
+        <span class="monCompteText">Déconnexion</span>
+      </a></li>
+  </ul>
+    </div>
 </div>
+</div>
+
+
