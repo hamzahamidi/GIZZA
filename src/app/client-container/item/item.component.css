@@ -158,7 +158,7 @@ h5 {
 
 @media only screen and (max-width: 1200px) {
     .shoping-card {
-        display: none!important;
+        position: inherit;
     }
     .sub-container {
         text-align: -webkit-center;
