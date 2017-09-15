@@ -158,7 +158,7 @@ h5 {
 
 @media only screen and (max-width: 1200px) {
     .shopping-cart {
-        position: inherit;
+        position: inherit !important;
     }
     .sub-container {
         text-align: -webkit-center;
