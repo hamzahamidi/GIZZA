@@ -12,12 +12,13 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 // services
 import { ShoppingCartDataService } from './shopping-cart/shopping-cart-data.service';
 import { ItemComponent } from './item/item.component';
+import { ItemService} from './item/item.service';
 
 @NgModule({
   imports: [
     ClientContainerRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     ClientContainerComponent,
@@ -27,6 +28,9 @@ import { ItemComponent } from './item/item.component';
     ShoppingCartComponent,
     ItemComponent
   ],
-  providers: [ ShoppingCartDataService ]
+  providers: [
+    ShoppingCartDataService,
+    ItemService
+  ]
 })
 export class ClientContainerModule { }
