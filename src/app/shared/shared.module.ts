@@ -11,7 +11,7 @@ import { UserDataService } from './user-data.service';
   imports: [
     RouterModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent, CommonModule, HttpClientModule],
