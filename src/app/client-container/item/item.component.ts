@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Item, Dessert, Drink, Pizza, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
+import {ItemService} from './item.service';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,8 @@ export class ItemComponent implements OnInit {
   items: Item[];
   categories: Category[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private itemService: ItemService) { }
 
   ngOnInit() {
     // shopping cart position
@@ -45,6 +47,11 @@ export class ItemComponent implements OnInit {
       this.items = BOISSONS;
       // this.categories = PIZZACATEGORIES;
     }
+
+    //Test du service d'appel au Backend
+    this.itemService.getPizzas().subscribe(data => console.log(data));
+
+
   }
   plus(item: Item) {
     if (item.quantity < 10) {
