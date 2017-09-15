@@ -6,6 +6,8 @@ export class Item {
   public category: string;
   public picture: string;
   public typeItem: TypeItem;
+  public quantity?: number;
+  public sumPrice?: number;
 
   constructor(
     id: number,
@@ -14,7 +16,9 @@ export class Item {
     price: number,
     category: string,
     picture: string,
-    typeItem: TypeItem
+    typeItem: TypeItem,
+    quantity: number = 0,
+    sumPrice: number = 0
   ) {
     this.id = id;
     this.title = title;
@@ -23,10 +27,12 @@ export class Item {
     this.category = category;
     this.picture = picture;
     this.typeItem = typeItem;
+    this.quantity = 0;
+    this.sumPrice = this.quantity * this.price;
   }
 }
 
-export class Pizza extends Item{
+export class Pizza extends Item {
   constructor(
     id: number,
     title: string,
@@ -34,13 +40,13 @@ export class Pizza extends Item{
     price: number,
     category: string,
     picture: string,
-    typeItem: TypeItem
-  ){
+    typeItem: TypeItem,
+  ) {
     super(id, title, description, price, category, picture, typeItem);
   }
 }
 
-export class Dessert extends Item{
+export class Dessert extends Item {
 
   public stock: number;
 
@@ -53,13 +59,13 @@ export class Dessert extends Item{
     picture: string,
     typeItem: TypeItem,
     stock: number
-  ){
+  ) {
     super(id, title, description, price, category, picture, typeItem);
     this.stock = stock;
   }
 }
 
-export class Drink extends Item{
+export class Drink extends Item {
 
   public stock: number;
 
@@ -71,8 +77,8 @@ export class Drink extends Item{
     category: string,
     picture: string,
     typeItem: TypeItem,
-    stock: number
-  ){
+    stock: number,
+  ) {
     super(id, title, description, price, category, picture, typeItem);
     this.stock = stock;
   }
@@ -89,10 +95,10 @@ export class Category {
 }
 
 export const PIZZAS: Pizza[] = [
-  new Pizza(1, 'Merguez','',10.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803100355053.jpg', TypeItem.PIZZA),
+  new Pizza(1, 'Merguez', '', 10.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803100355053.jpg', TypeItem.PIZZA),
   new Pizza(2, 'Fromage de Chèvre', '', 11.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803111857372.jpg', TypeItem.PIZZA),
   new Pizza(3, 'Jambon-Fromage', '', 8, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803102147922.jpg', TypeItem.PIZZA),
-  new Pizza(4, 'Mozza-Olives', '', 9, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803112458735.jpg', TypeItem.PIZZA ),
+  new Pizza(4, 'Mozza-Olives', '', 9, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20170803112458735.jpg', TypeItem.PIZZA),
   new Pizza(5, 'Margherita', '', 10.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg', TypeItem.PIZZA),
   new Pizza(6, 'Funghi', '', 9.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20141201170042241.jpg', TypeItem.PIZZA),
   new Pizza(7, 'Capricciosa', '', 9.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20150824183029117.png', TypeItem.PIZZA),
@@ -103,38 +109,38 @@ export const PIZZAS: Pizza[] = [
   new Pizza(12, 'Peperoni', '', 11.5, '', 'https://cdn-catalog.pizzahut.fr/images/fr/20141201165800417.jpg', TypeItem.PIZZA)
 ];
 export const DESSERTS: Dessert[] = [
-  { id: 1, title: 'Merguez',description:'',price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20161007170256836.jpg', typeItem: TypeItem.DESSERT,stock:100 },
-  { id: 2, title: 'Fromage de Chèvre',description:'',price: 11.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170317151535389.jpg', typeItem: TypeItem.DESSERT, stock:100 },
-  { id: 3, title: 'Jambon-Fromage',description:'',price: 8, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170616121837409.jpg', typeItem: TypeItem.DESSERT, stock:100},
-  { id: 4, title: 'Mozza-Olives',description:'',price: 9, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170616122257885.jpg', typeItem: TypeItem.DESSERT ,stock:100},
-  { id: 5, title: 'Margherita',description:'',price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150511161151615.png', typeItem: TypeItem.DESSERT ,stock:100},
-  { id: 6, title: 'Funghi',description:'',price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150511175221502.png', typeItem: TypeItem.DESSERT ,stock:100},
-  { id: 7, title: 'Capricciosa',description:'',price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170502155405035.jpg', typeItem: TypeItem.DESSERT ,stock:100},
-  { id: 8, title: 'Quattro Stagioni',description:'',price: 8.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20160518182309411.jpg', typeItem: TypeItem.DESSERT ,stock:100}
+  { id: 1, title: 'Merguez', description: '', price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20161007170256836.jpg', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 2, title: 'Fromage de Chèvre', description: '', price: 11.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170317151535389.jpg', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 3, title: 'Jambon-Fromage', description: '', price: 8, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170616121837409.jpg', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 4, title: 'Mozza-Olives', description: '', price: 9, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170616122257885.jpg', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 5, title: 'Margherita', description: '', price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150511161151615.png', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 6, title: 'Funghi', description: '', price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150511175221502.png', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 7, title: 'Capricciosa', description: '', price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20170502155405035.jpg', typeItem: TypeItem.DESSERT, stock: 100 },
+  { id: 8, title: 'Quattro Stagioni', description: '', price: 8.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20160518182309411.jpg', typeItem: TypeItem.DESSERT, stock: 100 }
 ];
 export const BOISSONS: Drink[] = [
-  { id: 1, title: 'Merguez',description:'',price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223172011404.png', typeItem: TypeItem.DRINK,stock:100 },
-  { id: 2, title: 'Fromage de Chèvre',description:'',price: 11.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223172011404.png', typeItem: TypeItem.DRINK, stock:100 },
-  { id: 3, title: 'Jambon-Fromage',description:'',price: 8, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223173012706.png', typeItem: TypeItem.DRINK, stock:100},
-  { id: 4, title: 'Mozza-Olives',description:'',price: 9, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150209115802362.png', typeItem: TypeItem.DRINK ,stock:100},
-  { id: 5, title: 'Margherita',description:'',price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223173855094.png', typeItem: TypeItem.DRINK ,stock:100},
-  { id: 6, title: 'Funghi',description:'',price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20160801173618388.jpg', typeItem: TypeItem.DRINK ,stock:100},
-  { id: 7, title: 'Capricciosa',description:'',price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20151124105634150.png', typeItem: TypeItem.DRINK ,stock:100}
+  { id: 1, title: 'Merguez', description: '', price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223172011404.png', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 2, title: 'Fromage de Chèvre', description: '', price: 11.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223172011404.png', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 3, title: 'Jambon-Fromage', description: '', price: 8, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223173012706.png', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 4, title: 'Mozza-Olives', description: '', price: 9, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150209115802362.png', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 5, title: 'Margherita', description: '', price: 10.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20150223173855094.png', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 6, title: 'Funghi', description: '', price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20160801173618388.jpg', typeItem: TypeItem.DRINK, stock: 100 },
+  { id: 7, title: 'Capricciosa', description: '', price: 9.5, category: '', picture: 'https://cdn-catalog.pizzahut.fr/images/fr/20151124105634150.png', typeItem: TypeItem.DRINK, stock: 100 }
 ];
 
 export const PIZZACATEGORIES: Category[] = [
-  {name: 'tous'},
-  {name: 'base tomate'},
-  {name: 'Base barbecue'},
-  {name: 'Base Crème Fraiche'},
-  {name: 'Sans Porc'},
-  {name: 'Sans viande'},
-  {name: 'Nouveau'}
+  { name: 'tous' },
+  { name: 'base tomate' },
+  { name: 'Base barbecue' },
+  { name: 'Base Crème Fraiche' },
+  { name: 'Sans Porc' },
+  { name: 'Sans viande' },
+  { name: 'Nouveau' }
 ];
 
 export const SHOPPINGCART: any[] = [
-  {item: PIZZAS[5], quantity: 1},
-  {item: PIZZAS[8], quantity: 3}
+  { item: PIZZAS[5], quantity: 1 },
+  { item: PIZZAS[8], quantity: 3 }
 ];
 
 
