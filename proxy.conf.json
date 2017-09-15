@@ -1,9 +1,6 @@
 {
-  "/gizza/api/": {
-    "target": "http://152.77.78.8:8080/gizza/api",
-    "secure": false,
-    "pathRewrite": { "^/categorie/all": "/categorie/all" },
-    "changeOrigin": true,
-    "logLevel": "debug"
+  "/": {
+    "target": "http://152.77.78.8:8080",
+    "secure": false
   }
 }

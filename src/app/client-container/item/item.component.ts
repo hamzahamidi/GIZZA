@@ -49,7 +49,7 @@ export class ItemComponent implements OnInit {
     }
 
     //Test du service d'appel au Backend
-    this.itemService.getPizzas().subscribe(data => console.log(data));
+    this.itemService.getCategories().subscribe(data => console.log(data));
 
 
   }
