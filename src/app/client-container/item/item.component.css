@@ -148,17 +148,17 @@ h5 {
     float: right;
 }
 
-.shoping-card {
+.shopping-cart {
     position: fixed;
-    top: 250px;
+    top: 350px;
     right: 50px;
     background-color: white;
     width: 300px;
 }
 
 @media only screen and (max-width: 1200px) {
-    .shoping-card {
-        position: inherit;
+    .shopping-cart {
+        position: inherit !important;
     }
     .sub-container {
         text-align: -webkit-center;
