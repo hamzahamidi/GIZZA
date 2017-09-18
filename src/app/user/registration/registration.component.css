@@ -46,3 +46,18 @@ div.passwordFormat::after {
 div.passwordFormat ul{
   list-style: none;
 }
+
+.main{
+  font-family: Avenir;
+  font-style: normal;
+  background-color: #FEFDED;
+}
+
+.btn.btn-default{
+  border: none;
+}
+
+
+.jumbotron{
+  background-color: #FDFAD5;
+}

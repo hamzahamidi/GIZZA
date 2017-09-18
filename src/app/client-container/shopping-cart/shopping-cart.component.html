@@ -11,37 +11,36 @@
       {{shoppingCartDataService.totalPrice()}} €
     </div>
   </div>
-  <div class="row coupon">
-    <form (ngSubmit)="onCouponSubmit()">
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <input type="text" class="form-control"
-                 [(ngModel)]="couponCode" name="couponCode"
-                 placeholder="Code de réduction">
+  <div class="cart-content">
+    <ul class="list-group" style="width: 120%">
+      <li class="list-group-item" *ngFor="let shoppingItem of shoppingCartDataService.getShoppingItems()">
+        <div class="row ">
+          <div class="col-xs-2"> <span class="quantity">{{shoppingItem.quantity}}x  </span></div>
+          <div class="col-xs-6"> <span class="itemTitle">{{shoppingItem.item.title}}</span></div>
+        <div class="col-xs-4 price">
+          {{shoppingItem.item.price * shoppingItem.quantity}} €
+          <span class="glyphicon glyphicon-trash" (click)="removeItem(shoppingItem.item.id)"></span>
         </div>
-        <div class="col-lg-offset-3 col-xs-6">
-          <button type="button" (click)="onCouponSubmit()" class="btn btn-default">Valider</button>
-        </div>
-      </div>
-      <div class="row">
-        <button type="button" (click)="order()" class="btn btn-default">Valider la commande</button>
-      </div>
-    </form>
-  </div>
-  <div class="row cart-content">
-    <ul>
-      <li *ngFor="let shoppingItem of shoppingCartDataService.getShoppingItems()">
-        <div class="col-xs-2">{{shoppingItem.quantity}}x</div>
-        <div class="col-xs-6">{{shoppingItem.item.title}}</div>
-        <div class="col-xs-4">
-          <div class="row">
-            {{shoppingItem.item.price * shoppingItem.quantity}} €
-          </div>
-          <div class="row">
-            <span class="glyphicon glyphicon-trash" (click)="removeItem(shoppingItem.item.id)"></span>
-          </div>
         </div>
       </li>
     </ul>
   </div>
+  <div class="row coupon">
+    <form (ngSubmit)="onCouponSubmit()">
+      <div class="row">
+        <div class="col-xs-8">
+          <input type="text" class="form-control"
+                 [(ngModel)]="couponCode" name="couponCode"
+                 placeholder="Code de réduction" style="width: 80%">
+        </div>
+        <div class="col-xs-4">
+          <button type="button" (click)="onCouponSubmit()" class="btn btn-default">Valider</button>
+        </div>
+      </div>
+      <div class="row validation">
+        <button type="button" (click)="order()" class="btn btn-default">Valider la commande</button>
+      </div>
+    </form>
+  </div>
+
 </div>
