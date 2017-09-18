@@ -47,8 +47,10 @@
                                 <div class="left ">
                                     <p id="price ">{{item.sumPrice}} €</p>
                                 </div>
-                                <div class="right " (click)="addCart(item)">
-                                    <p>Ajouter au panier</p>
+                                <div class="right ">
+                                    <button type="button" class="btn btn-default btn-number " data-type="plus" (click)="addCart(item)">
+                                                <span>Ajouter au panier</span>
+                                        </button>
                                 </div>
                             </div>
                         </div>
