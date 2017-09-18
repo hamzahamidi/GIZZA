@@ -12,22 +12,22 @@
     <app-shopping-cart class="shopping-cart" id="shopping-cart"></app-shopping-cart>
     <div class="sub-container">
         <div class="row">
-            <div *ngFor="let item of items " class=" .col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12 container-card ">
+            <div *ngFor="let item_quantity of items_quantity " class=" .col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12 container-card ">
               <div class="card">
                 <div class="card-block">
-                  <h3 class="card-title">{{item.title}}</h3>
-                  <img class="card-img-top " src="{{item.picture}} "><br/>
+                  <h3 class="card-title">{{item_quantity.item.title}}</h3>
+                  <img class="card-img-top " src="{{item_quantity.item.picture}} "><br/>
 
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   <div class="input-group " style="width:100px; ">
                   <span class="input-group-btn ">
-                  <button type="button" class="btn btn-default btn-number " (click)="minus(item)">
+                  <button type="button" class="btn btn-default btn-number " (click)="minus(item_quantity)">
                   <span class="glyphicon glyphicon-minus "></span>
                   </button>
                   </span>
-                  <input type="number" class="form-control input-number " value="{{item.quantity}}" min="1" max="10" disabled>
+                  <input type="number" class="form-control input-number " value="{{item_quantity.quantity}}" min="1" max="10" disabled>
                   <span class="input-group-btn ">
-                  <button type="button" class="btn btn-default btn-number " data-type="plus" (click)="plus(item)" >
+                  <button type="button" class="btn btn-default btn-number " data-type="plus" (click)="plus(item_quantity)" >
                   <span class="glyphicon glyphicon-plus "></span>
                   </button>
                   </span>
@@ -35,54 +35,13 @@
                 </div>
                 <div class="card-footer text-muted">
                   <div class="left ">
-                  <p id="price " class="price">{{item.sumPrice}} €</p>
+                  <p id="price " class="price">{{item_quantity.quantity * item_quantity.item.price}} €</p>
                   </div>
-                  <div class="right " (click)="addCart(item)">
+                  <div class="right " (click)="addToCart(item_quantity.item, item_quantity.quantity)">
                     <p><span class="btn btn-default">Ajouter au panier</span></p>
                   </div>
                 </div>
               </div>
-              <!--<div class="flip-container " ontouchstart="this.classList.toggle( 'hover'); ">-->
-                    <!--<div class="flipper ">-->
-                        <!--<div class="front ">-->
-                            <!--<div class="card ">-->
-                                <!--<img class="card-img-top " src="{{item.picture}} ">-->
-                                <!--<div class="card-block ">-->
-                                    <!--<h5 class="text-bold " style="text-align: center ">{{item.title}}: {{item.price}} €</h5>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="back ">-->
-                            <!--<div class="back-title ">{{item.title}}</div>-->
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget quam accumsan, finibus erat id, viverra libero. Nullam erat justo, semper eget laoreet nec, pellentesque in ipsum. Donec interdum diam ut feugiat tincidunt.-->
-                                <!--Vestibulum.-->
-                            <!--</p>-->
-                            <!--&lt;!&ndash; A changer &ndash;&gt;-->
-                            <!--<div class="input-group " style="width:150px; ">-->
-                                <!--<span class="input-group-btn ">-->
-                                    <!--<button type="button" class="btn btn-default btn-number " (click)="minus(item)">-->
-                                        <!--<span class="glyphicon glyphicon-minus "></span>-->
-                                <!--</button>-->
-                                <!--</span>-->
-                                <!--<input type="number" class="form-control input-number " value="{{item.quantity}}" min="1" max="10" disabled>-->
-                                <!--<span class="input-group-btn ">-->
-                                    <!--<button type="button" class="btn btn-default btn-number " data-type="plus" (click)="plus(item)" >-->
-                                        <!--<span class="glyphicon glyphicon-plus "></span>-->
-                                <!--</button>-->
-                                <!--</span>-->
-                            <!--</div>-->
-                            <!--&lt;!&ndash; incrementer decrementer&ndash;&gt;-->
-                            <!--<div class="footer ">-->
-                                <!--<div class="left ">-->
-                                    <!--<p id="price ">{{item.sumPrice}} €</p>-->
-                                <!--</div>-->
-                                <!--<div class="right " (click)="addCart(item)">-->
-                                    <!--<p>Ajouter au panier</p>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
