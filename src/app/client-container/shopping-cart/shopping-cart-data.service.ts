@@ -18,13 +18,14 @@ export class ShoppingCartDataService {
     this.shoppingItems = shoppingItems;
   }
 
-  public addToCart(shoppingItems: any) {
-    const index = this.shoppingItems.findIndex(_item => _item.item.title.indexOf(shoppingItems.item.title) > -1);
-    if (index > -1) {
-      this.shoppingItems[index].quantity += shoppingItems.quantity;
-    }
-    else this.shoppingItems.push(shoppingItems);
+  public addShoppingItem(shoppingItem: Item, quantity: number = 1) {
 
+    const index = this.shoppingItems.findIndex(_shoppingItem => _shoppingItem.item.id == shoppingItem.id);
+
+    if (index > -1) {
+      this.shoppingItems[index].quantity += quantity;
+    }
+    else this.shoppingItems.push({item: shoppingItem, quantity: quantity});
   }
 
   public removeShoppingItem(id: number) {

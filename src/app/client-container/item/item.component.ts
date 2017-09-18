@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, Item, Dessert, Drink, Pizza, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
+import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
 import { ItemService } from './item.service';
 import { ShoppingCartDataService } from '../shopping-cart/shopping-cart-data.service';
 
@@ -13,6 +13,7 @@ export class ItemComponent implements OnInit {
 
   public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
   items: Item[];
+  items_quantity: {item: Item, quantity: number}[] = [];
   categories: Category[];
 
   constructor(private router: Router,
@@ -22,6 +23,7 @@ export class ItemComponent implements OnInit {
     // shopping cart position
     const shoppingCart = document.getElementById('shopping-cart');
     const shoppingCartPosition = shoppingCart.getBoundingClientRect().top;
+
     window.addEventListener('scroll', function () {
       if (window.pageYOffset >= shoppingCartPosition) {
         shoppingCart.style.position = 'fixed';
@@ -49,27 +51,31 @@ export class ItemComponent implements OnInit {
       // this.categories = PIZZACATEGORIES;
     }
 
+
+    //Remplissage du tableau utilisé par le composant
+    for(let i = 0; i < this.items.length; i++){
+      this.items_quantity.push({item: this.items[i], quantity: 1});
+    }
+
     //Test du service d'appel au Backend
     this.itemService.getTestDep().subscribe(data => console.log(data));
-
-
-  }
-  plus(item: Item) {
-    if (item.quantity < 10) {
-      item.quantity++;
-    } else { item.quantity = 10; }
-    item.sumPrice = item.quantity * item.price;
   }
 
-  minus(item: Item) {
-    if (item.quantity > 1) {
-      item.quantity--;
-    } else { item.quantity = 1; }
-    item.sumPrice = item.quantity * item.price;
+  plus(item_quantity: any) {
+    if (item_quantity.quantity < 10) {
+      item_quantity.quantity++;
+    }
   }
-  addCart(item: Item) {
-    if (item.quantity > 0) {
-      this.shoppingCartDataService.addToCart({ item: item, quantity: item.quantity });
+
+  minus(item_quantity: any) {
+    if (item_quantity.quantity > 1) {
+      item_quantity.quantity--;
+    }
+  }
+
+  addToCart(item: Item, quantity: number) {
+    if (quantity > 0) {
+      this.shoppingCartDataService.addShoppingItem(item, quantity);
     }
   }
 

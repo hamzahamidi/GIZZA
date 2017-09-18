@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCartDataService} from './shopping-cart-data.service';
-import {SHOPPINGCART, Pizza, TypeItem} from '../item/model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,12 +9,9 @@ import {SHOPPINGCART, Pizza, TypeItem} from '../item/model';
 export class ShoppingCartComponent implements OnInit {
 
   public couponCode: string = '';
-
   constructor(public shoppingCartDataService : ShoppingCartDataService) {}
 
   ngOnInit() {
-
-    this.shoppingCartDataService.setShoppingItems(SHOPPINGCART);
 /*
     console.log(JSON.parse(JSON.stringify(this.shoppingCartDataService.getShoppingItems())));
 
