@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Item, Dessert, Drink, Pizza, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
-import {ItemService} from './item.service';
+import { ItemService } from './item.service';
+import { ShoppingCartDataService } from '../shopping-cart/shopping-cart-data.service';
 
 @Component({
   selector: 'app-item',
@@ -15,7 +16,7 @@ export class ItemComponent implements OnInit {
   categories: Category[];
 
   constructor(private router: Router,
-              private itemService: ItemService) { }
+    private itemService: ItemService, public shoppingCartDataService: ShoppingCartDataService) { }
 
   ngOnInit() {
     // shopping cart position
@@ -55,19 +56,21 @@ export class ItemComponent implements OnInit {
   }
   plus(item: Item) {
     if (item.quantity < 10) {
-    item.quantity++;
+      item.quantity++;
     } else { item.quantity = 10; }
     item.sumPrice = item.quantity * item.price;
   }
 
   minus(item: Item) {
-    if (item.quantity > 0) {
-    item.quantity--;
-    } else { item.quantity = 0; }
+    if (item.quantity > 1) {
+      item.quantity--;
+    } else { item.quantity = 1; }
     item.sumPrice = item.quantity * item.price;
   }
   addCart(item: Item) {
-
+    if (item.quantity > 0) {
+      this.shoppingCartDataService.addToCart({ item: item, quantity: item.quantity });
+    }
   }
 
 }
