@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserDataService} from '../../shared/user-data.service';
+import {UserDataService} from '../../core/user-data.service';
 import {User} from '../../shared/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-connexion',
@@ -10,17 +11,22 @@ import {User} from '../../shared/user';
 export class ConnexionComponent implements OnInit {
 
   model = {
-    email: '',
+    pseudo: '',
     password: ''
   };
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(private userDataService: UserDataService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log('You submitted with these informations: email: ' + this.model.email + ' => password:' + this.model.password);
+    if(this.model.pseudo.length > 0){
+      this.userDataService.setConnected(true);
+      this.userDataService.setPseudo(this.model.pseudo);
+      this.router.navigate(['/purchase']);
+    }
   }
 
 }

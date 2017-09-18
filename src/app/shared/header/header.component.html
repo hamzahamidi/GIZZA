@@ -5,30 +5,40 @@
         <img class="logo-img" src="../../../../assets/logo/gizza_logo_595_496.png" alt="gizza logo" style="z-index:3000; position:absolute; top: 10px;">
       </a>
     </div>
-    <div *ngIf="loggedInUser=='0'" class="col-xs-2">
-        <a routerLink="/user/login" routerLinkActive="active" style="z-index:3000; position:relative; top: 30px;">
+    <div *ngIf="userDataService.getPseudo().length == 0; else elseBlock;" class="col-xs-2">
+        <a routerLink="/user/login" routerLinkActive="active">
         <span class="glyphicon glyphicon-user"></span>
         <span class="monCompteText">Mon Compte</span>
       </a>
     </div>
-    <div *ngIf="loggedInUser!='0'" class="col-xs-2">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="z-index:3000; position:absolute; top: 70px;">
-    Bonjour {{loggedInUser}}
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a routerLink="/user/login" routerLinkActive="active">
-        <span class="glyphicon glyphicon-user"></span>
-        <span class="monCompteText">Mon Compte</span>
-      </a></li>
-    <li role="separator" class="divider"></li>
-    <li><a routerLink="/user/login" routerLinkActive="active">
-        <span class="glyphicon glyphicon-off"></span>
-        <span class="monCompteText">Déconnexion</span>
-      </a></li>
-  </ul>
-    </div>
-</div>
+    <ng-template #elseBlock>
+      <div class="col-xs-2">
+        <button class="btn btn-default dropdown-toggle" [class.background-img]="backGroundYellow"
+                type="button" id="dropdownMenu1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="true">
+          Bonjour {{userDataService.getPseudo()}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li>
+            <a routerLink="/user/registration" routerLinkActive="active">
+              <span class="glyphicon glyphicon-user"></span>
+              <span class="monCompteText">Mon Compte</span>
+            </a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a (click)="deconnexion()">
+              <span class="glyphicon glyphicon-off"></span>
+              <span class="monCompteText">Déconnexion</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </div>
 </div>
 
 

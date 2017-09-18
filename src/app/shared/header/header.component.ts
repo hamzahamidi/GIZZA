@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UserDataService} from '../../core/user-data.service';
+import {User} from '../user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedInUser: string;
-  constructor() { }
+  backGroundYellow = false;
+
+  constructor(public userDataService: UserDataService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.loggedInUser = '0';
+    let stringRoute = this.router.url;
+    let splitRoute = stringRoute.split("/");
+    let endRouteName = splitRoute[splitRoute.length - 1];
+
+    if(endRouteName == 'purchase'){
+      this.backGroundYellow = true;
+    }else{
+      this.backGroundYellow = false;
+    }
   }
 
+  deconnexion(){
+    this.userDataService.initUserDataService();
+    this.router.navigate(['/user/login']);
+  }
 }
 

@@ -13,17 +13,17 @@
         <form (ngSubmit)="onSubmit()" #connexionForm="ngForm">
           <div class="form-group row">
             <div class="col-lg-4 right-align">
-              <label for="email">Adresse E-mail</label>
+              <label for="pseudo">Pseudo</label>
             </div>
             <div class="col-lg-7">
-              <input type="text" class="form-control" id="email"
+              <input type="text" class="form-control" id="pseudo"
                      required
-                     [(ngModel)]="model.email" name="email"
-                     placeholder="Adresse E-mail"
-                     #email="ngModel">
-              <div [hidden]="email.valid || email.pristine"
+                     [(ngModel)]="model.pseudo" name="pseudo"
+                     placeholder="Pseudo"
+                     #pseudo="ngModel">
+              <div [hidden]="pseudo.valid || pseudo.pristine"
                    class="alert alert-danger">
-                Une adresse email est requise
+                Un pseudo est requis
               </div>
             </div>
           </div>
