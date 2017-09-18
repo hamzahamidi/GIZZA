@@ -1,14 +1,17 @@
 div.shopping-cart{
-  border: 1px solid lightgrey;
-  border-radius: 5px;
+  /*border: 1px solid lightgrey;*/
+  border-radius: 10px;
   margin-bottom: 10px;
+  background-color: #f9fefe;
 }
 
 div.shopping-cart div.title{
-  background-color: rgba(200, 200, 200, 1.0);
-  color: white;
+  background-color: #d5e4e3;
+  color: #5F5B57;
   text-align: center;
   padding: 1%;
+  font-family: "Snell Roundhand";
+  font-style: normal;
 }
 
 div.shopping-cart div.title h3{

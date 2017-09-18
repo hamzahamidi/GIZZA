@@ -3,6 +3,67 @@
     width: calc(100% - 300px);
 }
 
+a.btn-default{
+  border-radius: 0px;
+  border:none;
+  text-transform: uppercase;
+  color: #5F5B57;
+  font-family: Avenir;
+  font-style: normal;
+  background-color: #d5e4e3;
+}
+
+div.card{
+  background-color: #FDFAD5;
+  border-radius: 10px;
+  width: 320px;
+  height: 427px;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+}
+
+.card-title{
+  font-family: "Snell Roundhand";
+  font-style: normal;
+  color: #5F5B57;
+}
+
+.form-control.input-number{
+  text-align: center;
+  font-family: Avenir;
+  font-style: normal;
+  font-size: 15px;
+  color: #5F5B57;
+  border-radius: 0px;
+  border:none;
+  width: 50px;
+  background-color: #F9FEFE;
+}
+
+.price{
+  font-family: Georgia;
+  font-style: normal;
+  font-size: 25px;
+  color: #5F5B57;
+  text-align: right;
+}
+
+.card-text{
+  font-family: Avenir;
+  font-style: normal;
+  color: #5F5B57;
+}
+
+.btn.btn-default.btn-number{
+  border-radius: 0px;
+  border:none;
+}
+
+.btn.btn-default.btn-number:active{
+  color: #ffffff;
+}
 .container-card {
     margin-bottom: 15px;
     margin-top: 15px;
@@ -13,6 +74,11 @@
     -moz-perspective: 1000;
     -o-perspective: 1000;
     perspective: 1000;
+  background-color: #FDFAD5;
+  border-radius: 10px;
+ /* border-radius: .28571429rem;*/
+  /*box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;*/
+
 }
 
 .flip-container:hover .flipper,
@@ -62,7 +128,7 @@
     -moz-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
-    background: #f8f8f8;
+    background: #f9fefe;
 }
 
 .front .name {
@@ -104,9 +170,9 @@ h5 {
     font-size: 1em;
     overflow: hidden;
     padding: 0;
-    border: none;
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    /*border: none;*/
+    border-radius: 10px;
+    /*box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;*/
 }
 
 .card-block {
@@ -120,7 +186,7 @@ h5 {
 
 .card-img-top {
     display: block;
-    width: 100%;
+    width:60%;
     height: auto;
 }
 
