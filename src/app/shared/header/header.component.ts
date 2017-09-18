@@ -10,22 +10,10 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  backGroundYellow = false;
-
   constructor(public userDataService: UserDataService,
               private router: Router) { }
 
-  ngOnInit() {
-    let stringRoute = this.router.url;
-    let splitRoute = stringRoute.split("/");
-    let endRouteName = splitRoute[splitRoute.length - 1];
-
-    if(endRouteName == 'purchase'){
-      this.backGroundYellow = true;
-    }else{
-      this.backGroundYellow = false;
-    }
-  }
+  ngOnInit() {}
 
   deconnexion(){
     this.userDataService.initUserDataService();
