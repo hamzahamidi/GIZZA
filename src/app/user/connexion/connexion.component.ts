@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserDataService} from '../../core/user-data.service';
-import {User} from '../../shared/user';
 import {Router} from '@angular/router';
-
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-connexion',
@@ -34,8 +31,12 @@ export class ConnexionComponent implements OnInit {
 
       let connexionPage = document.getElementById('connexionPage');
       let connexionPageHeight = window.innerHeight - appHeaderHeight - appFooterHeight - 1;
+      let actualConnexionPageHeight = connexionPage.getBoundingClientRect().height;
 
-      connexionPage.style.height = connexionPageHeight + 'px';
+      if(actualConnexionPageHeight < connexionPageHeight)
+        connexionPage.style.height = connexionPageHeight + 'px';
+      else
+        connexionPage.style.height = actualConnexionPageHeight + 'px';
     }
   }
 
@@ -46,5 +47,4 @@ export class ConnexionComponent implements OnInit {
       this.router.navigate(['/purchase']);
     }
   }
-
 }
