@@ -11,7 +11,8 @@ import { ShoppingCartDataService } from '../shopping-cart/shopping-cart-data.ser
 })
 export class ItemComponent implements OnInit {
 
-  public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
+ // public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
+  public imgSrc = '../../../../assets/image/banner.png';
   items: Item[];
   items_quantity: {item: Item, quantity: number}[] = [];
   categories: Category[];

@@ -3,6 +3,7 @@
     width: calc(100% - 300px);
 }
 
+
 a.btn-default{
   border-radius: 0px;
   border:none;
@@ -38,7 +39,7 @@ div.card{
   color: #5F5B57;
   border-radius: 0px;
   border:none;
-  width: 50px;
+  width: 60px;
   background-color: #F9FEFE;
 }
 
@@ -61,12 +62,23 @@ div.card{
   border:none;
 }
 
-.btn.btn-default.btn-number:active{
-  color: #ffffff;
+.btn.btn-default.btn-number:focus{
+  outline: none;
 }
 .container-card {
     margin-bottom: 15px;
     margin-top: 15px;
+}
+
+.btn.btn-default.btnCart{
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  border:none;
+}
+
+.btn.btn-default.btnCart:focus {
+  outline: none;
 }
 
 .flip-container {
