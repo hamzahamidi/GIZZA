@@ -62,9 +62,9 @@ export class ItemComponent implements OnInit {
   }
 
   minus(item: Item) {
-    if (item.quantity > 0) {
+    if (item.quantity > 1) {
       item.quantity--;
-    } else { item.quantity = 0; }
+    } else { item.quantity = 1; }
     item.sumPrice = item.quantity * item.price;
   }
   addCart(item: Item) {
