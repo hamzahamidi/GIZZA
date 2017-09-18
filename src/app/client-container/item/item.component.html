@@ -35,10 +35,8 @@
                 </div>
                 <div class="card-footer text-muted">
                   <div class="left ">
-                  <p id="price " class="price">{{item_quantity.quantity * item_quantity.item.price}} €</p>
+                    <p id="price " class="price">{{item_quantity.quantity * item_quantity.item.price}} €</p>
                   </div>
-                  <div class="right " (click)="addToCart(item_quantity.item, item_quantity.quantity)">
-                    <p><span class="btn btn-default">Ajouter au panier</span></p>
                   <div class="right " (click)="addToCart(item_quantity.item, item_quantity.quantity)">
                       <button class="btn btn-default btnCart">
                         <span class="glyphicon glyphicon-shopping-cart" width="20"></span>
