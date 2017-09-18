@@ -1,5 +1,5 @@
-<div>
-    <img src="{{imgSrc}}" style="width: 100%;">
+<div class="banner">
+    <img class="bannerImage" src={{imgSrc}} style="width: 100%;">
 </div>
 <div class="container">
     <div class="sub-container">
@@ -19,7 +19,7 @@
                   <img class="card-img-top " src="{{item.picture}} "><br/>
 
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <div class="input-group " style="width:100px; ">
+                  <div class="input-group " style="width:60px; ">
                   <span class="input-group-btn ">
                   <button type="button" class="btn btn-default btn-number " (click)="minus(item)">
                   <span class="glyphicon glyphicon-minus "></span>
@@ -38,7 +38,8 @@
                   <p id="price " class="price">{{item.sumPrice}} €</p>
                   </div>
                   <div class="right " (click)="addCart(item)">
-                    <p><span class="btn btn-default">Ajouter au panier</span></p>
+                      <button class="btn btn-default btnCart"><span class="glyphicon glyphicon-shopping-cart" width="20"></span></button>
+
                   </div>
                 </div>
               </div>

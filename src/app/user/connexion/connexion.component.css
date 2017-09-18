@@ -12,10 +12,24 @@ div.connexionForm {
   padding: 2%;
 }
 
+.jumbotron{
+  background-color: #FDFAD5;
+}
+
 form{
   margin-top: 20px;
 }
 
 .registrationLink{
   margin-top: 20px;
+}
+
+.background-img{
+  background-color: #FEFDED;
+  font-family: Avenir;
+  height: 100%;
+}
+
+.btn.btn-default{
+  border: none;
 }
