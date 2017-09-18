@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { UserDataService } from './user-data.service';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -14,7 +13,6 @@ import { UserDataService } from './user-data.service';
     HttpClientModule,
   ],
   declarations: [HeaderComponent, FooterComponent],
-  exports: [HeaderComponent, FooterComponent, CommonModule, HttpClientModule],
-  providers: [UserDataService]
+  exports: [CommonModule, HttpClientModule, HeaderComponent, FooterComponent]
 })
 export class SharedModule { }

@@ -5,8 +5,10 @@ export class UserDataService{
 
   private firstName: string;
   private lastName: string;
-  private email: string;
+  private pseudo: string;
+  private address: string;
   private phoneNumber: string;
+  private email: string;
   private password: string;
   private connected: boolean;
   private role: string;
@@ -14,8 +16,10 @@ export class UserDataService{
   constructor(){
     this.firstName = '';
     this.lastName = '';
-    this.email = '';
+    this.pseudo = '';
+    this.address = '';
     this.phoneNumber = '';
+    this.email = '';
     this.password = '';
     this.connected = false;
     this.role = '';
@@ -27,6 +31,14 @@ export class UserDataService{
 
   public getLastName(){
     return this.lastName;
+  }
+
+  public getPseudo(){
+    return this.pseudo;
+  }
+
+  public getAddress(){
+    return this.address;
   }
 
   public getEmail(){
@@ -41,7 +53,7 @@ export class UserDataService{
     return this.password;
   }
 
-  public getConnected(){
+  public getConnected(): boolean{
     return this.connected;
   }
 
@@ -55,6 +67,14 @@ export class UserDataService{
 
   public setLastName(lastName: string){
     this.lastName = lastName;
+  }
+
+  public setPseudo(pseudo: string){
+    this.pseudo = pseudo;
+  }
+
+  public setAddress(address: string){
+    this.address = address;
   }
 
   public setEmail(email: string){
@@ -75,5 +95,16 @@ export class UserDataService{
 
   public setRole(role: string){
     this.role = role;
+  }
+
+  initUserDataService(){
+    this.setFirstName('');
+    this.setLastName('');
+    this.setPseudo('');
+    this.setEmail('');
+    this.setPhoneNumber('');
+    this.setPassword('');
+    this.setConnected(false);
+    this.setRole('');
   }
 }

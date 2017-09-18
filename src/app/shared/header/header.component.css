@@ -69,3 +69,7 @@ btn-default:hover, .btn-default:hover, .open > .dropdown-toggle.btn-default:hove
   color: #5F5B57;
 }
 
+#dropdownMenu1.background-img{
+  background-color: #FEFDED !important;
+  border-color: #FEFDED !important;
+}

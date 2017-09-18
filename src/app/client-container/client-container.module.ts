@@ -26,11 +26,10 @@ import { ItemService} from './item/item.service';
     ClientHomeComponent,
     CarouselComponent,
     ShoppingCartComponent,
-    ItemComponent
-  ],
+    ItemComponent],
   providers: [
     ShoppingCartDataService,
-    ItemService
+    ItemService,
   ]
 })
 export class ClientContainerModule { }
