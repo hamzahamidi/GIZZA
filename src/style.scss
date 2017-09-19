@@ -1,2 +1,6 @@
 @import 'variables';
 @import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
+@font-face {
+  font-family: Georgia;
+  src: url('/assets/fonts/Georgia.ttf') format('ttf');
+}
