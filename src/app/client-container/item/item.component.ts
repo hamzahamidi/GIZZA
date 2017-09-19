@@ -16,6 +16,7 @@ export class ItemComponent implements OnInit {
   items: Item[] = [];
   items_quantity: {item: Item, quantity: number}[] = [];
   categories: Category[] = [];
+  type: TypeItem;
 
   constructor(private router: Router,
     private itemService: ItemService, public shoppingCartDataService: ShoppingCartDataService) { }
@@ -40,23 +41,23 @@ export class ItemComponent implements OnInit {
     let routeItem = splitRoute[splitRoute.length - 1];
 
     if (routeItem == TypeItem.PIZZA.toString()) {
-      this.getItems(TypeItem.PIZZA);
+      this.type = TypeItem.PIZZA;
+      this.getItems();
       this.getCategories("PIZZA");
     }
     else if (routeItem == TypeItem.DESSERT.toString()) {
-      this.getItems(TypeItem.DESSERT);
+      this.type = TypeItem.DESSERT
+      this.getItems();
       this.getCategories("DESSERT");
     }
     else if (routeItem == TypeItem.DRINK.toString()) {
-      this.getItems(TypeItem.DRINK);
+      this.type = TypeItem.DRINK;
+      this.getItems();
       this.getCategories("BOISSON");
     }
 
     //Test du service d'appel au Backend
-//    this.itemService.getTestDep().subscribe(data => console.log(data));
-    this.itemService.getItems(TypeItem.PIZZA).subscribe(data => {
-      console.log(data);
-    });
+    //this.itemService.getTestDep().subscribe(data => console.log(data));
   }
 
   plus(item_quantity: any) {
@@ -83,30 +84,67 @@ export class ItemComponent implements OnInit {
     this.itemService.getCategories().subscribe(data => {
       for(let i = 0; i < data.items.length; i++){
         if(data.items[i].type == type)
-          this.categories.push(new Category(data.items[i].libelle))
+          this.categories.push(new Category(data.items[i].id, data.items[i].libelle))
       }
     });
-    this.categories.push(new Category("Tous"))
+    this.categories.push(new Category(0, "Tous"))
   }
 
-  getItems(type: TypeItem){
-    this.itemService.getItems(type).subscribe(data => {
+  getItems(){
+
+    this.itemService.getItems(this.type).subscribe(data => {
+
+      this.items = []
+      this.items_quantity = [];
+
       for(let i = 0; i < data.items.length; i++){
         this.items.push(new Item(
           data.items[i].id,
           data.items[i].nom,
           data.items[i].description,
           data.items[i].prix,
-          data.items[i].categoryId,
+          data.items[i].categorieId,
           data.items[i].url,
           TypeItem.PIZZA,
           0
         ));
       }
+
       //Remplissage du tableau utilisé par le composant
       for(let i = 0; i < this.items.length; i++){
         this.items_quantity.push({item: this.items[i], quantity: 1});
       }
     });
+  }
+
+  getItemsByCategory(cat: Category){
+
+    if(cat.libelle == "Tous"){
+      this.getItems();
+    }else{
+      this.itemService.getItemsByCategory(cat.id).subscribe(data => {
+
+        this.items = [];
+        this.items_quantity = [];
+
+        for(let i = 0; i < data.items.produits.length; i++){
+          this.items.push(new Item(
+            data.items.produits[i].id,
+            data.items.produits[i].nom,
+            data.items.produits[i].description,
+            data.items.produits[i].prix,
+            data.items.produits[i].categorieId,
+            data.items.produits[i].url,
+            TypeItem.PIZZA,
+            0
+          ));
+        }
+
+        //Remplissage du tableau utilisé par le composant
+        for(let i = 0; i < this.items.length; i++){
+          this.items_quantity.push({item: this.items[i], quantity: 1});
+        }
+      });
+    }
   }
 }

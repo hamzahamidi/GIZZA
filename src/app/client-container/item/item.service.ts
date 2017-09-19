@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 
-
 import { gizzaBackEndAPIConfig } from '../../shared/gizzaBackEndAPIConfig';
 import {TypeItem} from './model';
 
@@ -65,6 +64,22 @@ export class ItemService {
     }
   }
 
+  public getItemsByCategory(id: number): Observable<ItemResponse>{
+
+    let searchItemsByCategoryUrl = gizzaBackEndAPIConfig.searchItemsByCategoryUrl + id;
+
+    return this.http.get(searchItemsByCategoryUrl)
+      .map(res => {
+        const body: any = res;
+//          console.log(JSON.stringify(body, null, 2));
+        return {err: null, items: body};
+      })
+      .catch(err => {
+//        console.log('Server error: ' + JSON.stringify(err, null, 2));
+        return Observable.of({err: err, items: null});
+      });
+  }
+
   public getTestDep(): Observable<ItemsResponse>{
     return this.http.get(gizzaBackEndAPIConfig.searchTestUrl)
       .map(res => {
@@ -81,9 +96,10 @@ export class ItemService {
 
 export interface ItemsResponse{
   err: any;
-  items: any[]; //TODO à remplacer avec Item[] lorsque la structure sera cohérente
+  items: any[];
 }
+
 export interface ItemResponse {
   err: any;
-  todo: any; //TODO à remplacer avec Item lorsque la structure sera cohérente
+  items: any;
 }
