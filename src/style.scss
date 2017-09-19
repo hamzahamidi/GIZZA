@@ -10,7 +10,12 @@
   src: url('/assets/fonts/Menlo-Regular.ttf') format('ttf');
 }
 @font-face {
-  font-family: 'Trajan';
+  font-family: Myriad;
   font-style: normal;
-  src: url('/assets/fonts/TrajanPro-Regular.ttf') format('ttf');
+  src: url('/assets/fonts/MyriadPro-Light.otf');
+}
+@font-face {
+  font-family: Avenir;
+  font-style: normal;
+  src: url('/assets/fonts/Avenir/AvenirLTStd-Book.otf');
 }
