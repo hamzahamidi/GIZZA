@@ -36,9 +36,11 @@ export enum TypeItem {
 }
 
 export class Category {
+  public id: number;
   public libelle: string;
 
-  constructor(libelle: string){
+  constructor(id: number, libelle: string){
+    this.id = id;
     this.libelle = libelle;
   }
 }
@@ -78,13 +80,13 @@ export const BOISSONS: Item[] = [
 ];
 
 export const PIZZACATEGORIES: Category[] = [
-  { libelle: 'tous' },
-  { libelle: 'base tomate' },
-  { libelle: 'Base barbecue' },
-  { libelle: 'Base Crème Fraiche' },
-  { libelle: 'Sans Porc' },
-  { libelle: 'Sans viande' },
-  { libelle: 'Nouveau' }
+  new Category( 1, 'tous' ),
+  new Category(2, 'base tomate' ),
+  new Category(3, 'Base barbecue'),
+  new Category(4, 'Base Crème Fraiche'),
+  new Category(5, 'Sans Porc' ),
+  new Category(6, 'Sans viande'),
+  new Category(7, 'Nouveau')
 ];
 
 
