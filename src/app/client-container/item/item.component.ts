@@ -13,9 +13,9 @@ export class ItemComponent implements OnInit {
 
  // public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
   public imgSrc = '../../../../assets/image/banner.png';
-  items: Item[];
+  items: Item[] = [];
   items_quantity: {item: Item, quantity: number}[] = [];
-  categories: Category[];
+  categories: Category[] = [];
 
   constructor(private router: Router,
     private itemService: ItemService, public shoppingCartDataService: ShoppingCartDataService) { }
@@ -40,26 +40,23 @@ export class ItemComponent implements OnInit {
     let routeItem = splitRoute[splitRoute.length - 1];
 
     if (routeItem == TypeItem.PIZZA.toString()) {
-      this.items = PIZZAS;
-      this.categories = PIZZACATEGORIES;
+      this.getItems(TypeItem.PIZZA);
+      this.getCategories("PIZZA");
     }
     else if (routeItem == TypeItem.DESSERT.toString()) {
-      this.items = DESSERTS;
-      // this.categories = PIZZACATEGORIES;
+      this.getItems(TypeItem.DESSERT);
+      this.getCategories("DESSERT");
     }
     else if (routeItem == TypeItem.DRINK.toString()) {
-      this.items = BOISSONS;
-      // this.categories = PIZZACATEGORIES;
-    }
-
-
-    //Remplissage du tableau utilisé par le composant
-    for(let i = 0; i < this.items.length; i++){
-      this.items_quantity.push({item: this.items[i], quantity: 1});
+      this.getItems(TypeItem.DRINK);
+      this.getCategories("BOISSON");
     }
 
     //Test du service d'appel au Backend
-    this.itemService.getTestDep().subscribe(data => console.log(data));
+//    this.itemService.getTestDep().subscribe(data => console.log(data));
+    this.itemService.getItems(TypeItem.PIZZA).subscribe(data => {
+      console.log(data);
+    });
   }
 
   plus(item_quantity: any) {
@@ -80,4 +77,36 @@ export class ItemComponent implements OnInit {
     }
   }
 
+
+  //Permet d'obtenir les catégories en fonction du type de produits demandé
+  getCategories(type: string){
+    this.itemService.getCategories().subscribe(data => {
+      for(let i = 0; i < data.items.length; i++){
+        if(data.items[i].type == type)
+          this.categories.push(new Category(data.items[i].libelle))
+      }
+    });
+    this.categories.push(new Category("Tous"))
+  }
+
+  getItems(type: TypeItem){
+    this.itemService.getItems(type).subscribe(data => {
+      for(let i = 0; i < data.items.length; i++){
+        this.items.push(new Item(
+          data.items[i].id,
+          data.items[i].nom,
+          data.items[i].description,
+          data.items[i].prix,
+          data.items[i].categoryId,
+          data.items[i].url,
+          TypeItem.PIZZA,
+          0
+        ));
+      }
+      //Remplissage du tableau utilisé par le composant
+      for(let i = 0; i < this.items.length; i++){
+        this.items_quantity.push({item: this.items[i], quantity: 1});
+      }
+    });
+  }
 }

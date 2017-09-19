@@ -1,6 +1,6 @@
 {
   "/gizza/api/*": {
-    "target": "http://152.77.78.11",
+    "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug"
   }

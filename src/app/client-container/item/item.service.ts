@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 
 
 import { gizzaBackEndAPIConfig } from '../../shared/gizzaBackEndAPIConfig';
+import {TypeItem} from './model';
 
 @Injectable()
 export class ItemService {
@@ -27,17 +28,41 @@ export class ItemService {
       });
   }
 
-  public getPizzas(): Observable<ItemsResponse>{
-    return this.http.get(gizzaBackEndAPIConfig.searchAllPizzasUrl)
-      .map(res => {
-        const body: any = res;
+  public getItems(type: TypeItem): Observable<ItemsResponse>{
+    if(type == TypeItem.PIZZA){
+      return this.http.get(gizzaBackEndAPIConfig.searchAllPizzasUrl)
+        .map(res => {
+          const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-        return {err: null, items: body};
-      })
-      .catch(err => {
+          return {err: null, items: body};
+        })
+        .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, items: null});
+          return Observable.of({err: err, items: null});
+        });
+    }else if(type == TypeItem.DRINK){
+      return this.http.get(gizzaBackEndAPIConfig.searchAllDrinksUrl)
+        .map(res => {
+          const body: any = res;
+//          console.log(JSON.stringify(body, null, 2));
+          return {err: null, items: body};
+        })
+        .catch(err => {
+//        console.log('Server error: ' + JSON.stringify(err, null, 2));
+          return Observable.of({err: err, items: null});
+        });
+    }else if(type == TypeItem.DESSERT){
+      return this.http.get(gizzaBackEndAPIConfig.searchAllDessertsUrl)
+        .map(res => {
+          const body: any = res;
+//          console.log(JSON.stringify(body, null, 2));
+          return {err: null, items: body};
+        })
+        .catch(err => {
+//        console.log('Server error: ' + JSON.stringify(err, null, 2));
+          return Observable.of({err: err, items: null});
       });
+    }
   }
 
   public getTestDep(): Observable<ItemsResponse>{
