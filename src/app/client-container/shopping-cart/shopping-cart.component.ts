@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ShoppingCartDataService} from './shopping-cart-data.service';
 import {Router} from '@angular/router';
 import {Item} from '../item/model';
+import {UserDataService} from '../../core/user-data/user-data.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,14 +11,14 @@ import {Item} from '../item/model';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  public couponCode: string = '';
   constructor(public shoppingCartDataService : ShoppingCartDataService,
+              public userDataService: UserDataService,
               private router: Router) {}
 
   ngOnInit() {}
 
-  onCouponSubmit(){
-    console.log('You have the coupon number: ' + this.couponCode);
+  onCouponSubmit(couponCode: string){
+    this.userDataService.setReductionCode(couponCode);
   }
 
   validateOrder(){
@@ -26,5 +27,9 @@ export class ShoppingCartComponent implements OnInit {
 
   removeItem(item: Item){
     this.shoppingCartDataService.removeShoppingItem(item);
+  }
+
+  modifyCoupon(){
+    this.userDataService.setReductionCode('');
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../shared/user';
 
 import * as $ from 'jquery';
 import {UserDataService} from '../../core/user-data/user-data.service';

@@ -26,25 +26,35 @@
     </ul>
   </div>
   <div class="row coupon">
-    <form (ngSubmit)="onCouponSubmit()">
-      <div class="row">
+    <form>
+      <div class="row" *ngIf="userDataService.getReductionCode().length == 0; else elseDivBlock">
         <div class="col-xs-8">
           <input type="text" class="form-control"
-                 [(ngModel)]="couponCode" name="couponCode"
+                 #couponCode name="couponCode"
                  placeholder="Code de réduction" style="width: 80%">
         </div>
         <div class="col-xs-4">
-          <button type="button" (click)="onCouponSubmit()" class="btn btn-default reduction">Valider</button>
+          <button type="button" (click)="onCouponSubmit(couponCode.value)" class="btn btn-default reduction">Valider</button>
         </div>
       </div>
-      <div class="row validation">
-        <button type="button"
-                (click)="validateOrder()"
-                class="btn btn-default"
-                [disabled]="shoppingCartDataService.getShoppingItems().length == 0">
-          Valider la commande
-        </button>
-      </div>
     </form>
+    <ng-template #elseDivBlock>
+      <div class="row">
+        <div class="col-xs-8 text-center">
+          <span>Réduction: {{userDataService.getReductionCode()}}</span>
+        </div>
+        <div class="col-xs-4 text-center">
+          <button type="button" (click)="modifyCoupon()" class="btn btn-default reduction">Modifier</button>
+        </div>
+      </div>
+    </ng-template>
+    <div class="row validation">
+      <button type="button"
+              (click)="validateOrder()"
+              class="btn btn-default"
+              [disabled]="shoppingCartDataService.getShoppingItems().length == 0">
+        Valider la commande
+      </button>
+    </div>
   </div>
 </div>

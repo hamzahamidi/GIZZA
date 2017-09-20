@@ -12,6 +12,7 @@ export class UserDataService{
   private password: string;
   private connected: boolean;
   private role: string;
+  private reductionCode: string;
 
   constructor(){
     this.firstName = '';
@@ -23,6 +24,7 @@ export class UserDataService{
     this.password = '';
     this.connected = false;
     this.role = '';
+    this.reductionCode = '';
   }
 
   public getFirstName(){
@@ -61,6 +63,10 @@ export class UserDataService{
     return this.role;
   }
 
+  public getReductionCode(){
+    return this.reductionCode;
+  }
+
   public setFirstName(firstName: string){
     this.firstName = firstName;
   }
@@ -97,6 +103,10 @@ export class UserDataService{
     this.role = role;
   }
 
+  public setReductionCode(reductionCode: string){
+    this.reductionCode = reductionCode;
+  }
+
   initUserDataService(){
     this.setFirstName('');
     this.setLastName('');
@@ -106,5 +116,6 @@ export class UserDataService{
     this.setPassword('');
     this.setConnected(false);
     this.setRole('');
+    this.setReductionCode('');
   }
 }
