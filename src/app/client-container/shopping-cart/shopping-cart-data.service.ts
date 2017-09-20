@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../item/model';
+import {Item, TypeItem} from '../item/model';
 
 @Injectable()
 export class ShoppingCartDataService {
@@ -18,28 +18,33 @@ export class ShoppingCartDataService {
     this.shoppingItems = shoppingItems;
   }
 
-  public addShoppingItem(shoppingItem: Item, quantity: number = 1) {
+  public addShoppingItem(item: Item, quantity: number = 1) {
 
-    const index = this.shoppingItems.findIndex(_shoppingItem => _shoppingItem.item.id == shoppingItem.id);
+    const index = this.shoppingItems.findIndex(_shoppingItem => _shoppingItem.item.id == item.id);
 
     if (index > -1) {
       this.shoppingItems[index].quantity += quantity;
     }
-    else this.shoppingItems.push({item: shoppingItem, quantity: quantity});
+    else this.shoppingItems.push({item: item, quantity: quantity});
   }
 
-  public removeShoppingItem(id: number) {
+  public removeShoppingItem(item: Item, quantity: number = -1) {
     let index = -1;
 
     for (let i = 0; i < this.shoppingItems.length; i++) {
-      if (this.shoppingItems[i].item.id == id) {
+      if (this.shoppingItems[i].item.id == item.id) {
         index = i;
         break;
       }
     }
 
     if (index >= 0) {
-      this.shoppingItems.splice(index, 1);
+      if(quantity  == -1)
+        this.shoppingItems.splice(index, 1);
+      else{
+        if(this.shoppingItems[index].quantity - quantity >= 0)
+          this.shoppingItems[index].quantity -= quantity;
+      }
     }
   }
 
