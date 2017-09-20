@@ -103,6 +103,11 @@ div.shopping-cart div.validation{
   font-style: normal;
 }
 
+.btn.btn-default.reduction{
+  background-color: #d5e4e3;
+  color: #5F5B57;
+}
+
 .form-control{
   font-family: Avenir;
   font-style: normal;
