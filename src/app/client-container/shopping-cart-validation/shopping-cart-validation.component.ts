@@ -12,17 +12,18 @@ import {RouterDataService} from '../../core/router-data/router-data.service';
 })
 export class ShoppingCartValidationComponent implements OnInit {
 
-  public couponCode: string = '';
   constructor(public shoppingCartDataService : ShoppingCartDataService,
-              private userDataService: UserDataService,
+              public userDataService: UserDataService,
               private routerDataService: RouterDataService,
               private router: Router) { }
 
   ngOnInit() {
+/*
     if(!this.userDataService.getConnected()){
       this.routerDataService.setRedirected(true);
       this.router.navigate(['/user/login']);
     }
+*/
   }
 
   order(){
@@ -50,6 +51,14 @@ export class ShoppingCartValidationComponent implements OnInit {
 
   removeItem(item: Item){
     this.shoppingCartDataService.removeShoppingItem(item);
+  }
+
+  onCouponSubmit(couponCode: string){
+    this.userDataService.setReductionCode(couponCode);
+  }
+
+  modifyCoupon(){
+    this.userDataService.setReductionCode('');
   }
 
 }
