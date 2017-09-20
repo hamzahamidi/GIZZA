@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 /* Feature Modules */
 import { ClientContainerModule } from './client-container/client-container.module';
+import { AdminContainerModule } from './admin-container/admin-container.module';
 
 // components
 import { AppComponent } from './app.component';
@@ -23,7 +24,8 @@ import { PageNotFoundComponent } from './page-not-found.component';
     CoreModule,
     BrowserModule,
     AppRoutingModule,
-    ClientContainerModule
+    ClientContainerModule,
+    AdminContainerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
