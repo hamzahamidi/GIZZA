@@ -1,0 +1,13 @@
+#validationPage{
+  margin-top: 50px;
+}
+
+.jumbotron{
+  background-color: #FDFAD5;
+}
+
+.list-group-item{
+  background-color:transparent ;
+  margin-left: -30px;
+  border: none;
+}

@@ -1,4 +1,8 @@
-<app-client-header></app-client-header>
-<div class="container-fluid">
+<div class="container-fluid background-img">
+  <app-header></app-header>
+  <div *ngIf="currentUrl != '/purchase/shopping-cart-validation'">
+    <app-client-header></app-client-header>
+  </div>
   <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </div>

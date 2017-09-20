@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+
+import 'rxjs/add/operator/pairwise';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-client-container',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientContainerComponent implements OnInit {
 
-  constructor() { }
+  currentUrl: string = '';
+
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.router.events
+      .filter(navigationEnds => navigationEnds instanceof NavigationEnd)
+      .pairwise().subscribe(navigationEnds => {
+      this.currentUrl = navigationEnds[1]['url'];
+    });
   }
-
 }
