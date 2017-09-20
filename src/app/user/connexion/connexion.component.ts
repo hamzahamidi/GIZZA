@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {UserDataService} from '../../core/user-data.service';
-import {Router} from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {UserDataService} from '../../core/user-data/user-data.service';
+import {NavigationEnd, Router} from '@angular/router';
+import {RouterDataService} from '../../core/router-data/router-data.service';
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
-export class ConnexionComponent implements OnInit {
+export class ConnexionComponent implements OnInit, OnDestroy {
 
   model = {
     pseudo: '',
     password: ''
   };
 
-  constructor(private userDataService: UserDataService,
+  constructor(public userDataService: UserDataService,
+              public routerDataService: RouterDataService,
               private router: Router) { }
 
   ngOnInit() {
@@ -40,11 +42,15 @@ export class ConnexionComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.routerDataService.setRedirected(false);
+  }
+
   onSubmit() {
     if(this.model.pseudo.length > 0){
       this.userDataService.setConnected(true);
       this.userDataService.setPseudo(this.model.pseudo);
-      this.router.navigate(['/purchase']);
+      this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
     }
   }
 }

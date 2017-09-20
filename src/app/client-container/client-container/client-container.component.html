@@ -1,6 +1,6 @@
 <div class="container-fluid background-img">
   <app-header></app-header>
-  <div *ngIf="currentUrl != '/purchase/shopping-cart-validation'">
+  <div *ngIf="routerDataService.getVisitedUrl() != '/purchase/shopping-cart-validation'">
     <app-client-header></app-client-header>
   </div>
   <router-outlet></router-outlet>
