@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent} from './user/user.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { RegistrationComponent} from './registration/registration.component';
-
+import { ReinitialiseComponent} from "./reinitialise/reinitialise.component";
 
 export const userRoutes: Routes = [
   {
@@ -12,6 +12,7 @@ export const userRoutes: Routes = [
     children: [
       { path: 'login', component: ConnexionComponent },
       { path: 'registration', component: RegistrationComponent },
+      { path: 'reinitialise', component: ReinitialiseComponent}
     ]
   }
 ];
