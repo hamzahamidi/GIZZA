@@ -10,7 +10,7 @@ div.shopping-cart div.title{
   color: #5F5B57;
   text-align: center;
   padding: 1%;
-  font-family: "Snell Roundhand";
+  font-family: Myriad;
   font-style: normal;
 }
 
@@ -101,6 +101,11 @@ div.shopping-cart div.validation{
   border: none;
   font-family: Avenir;
   font-style: normal;
+}
+
+.btn.btn-default.reduction{
+  background-color: #d5e4e3;
+  color: #5F5B57;
 }
 
 .form-control{
