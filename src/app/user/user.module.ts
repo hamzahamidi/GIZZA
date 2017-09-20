@@ -6,6 +6,7 @@ import { UserRoutingModule} from './user-routing.module';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ReinitialiseComponent } from './reinitialise/reinitialise.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { RegistrationComponent } from './registration/registration.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ConnexionComponent, RegistrationComponent, UserComponent, RegistrationComponent],
+  declarations: [ConnexionComponent, RegistrationComponent, UserComponent, RegistrationComponent, ReinitialiseComponent],
 })
 export class UserModule { }
