@@ -13,6 +13,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCartDataService } from './shopping-cart/shopping-cart-data.service';
 import { ItemComponent } from './item/item.component';
 import { ItemService} from './item/item.service';
+import { ShoppingCartValidationComponent } from './shopping-cart-validation/shopping-cart-validation.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ItemService} from './item/item.service';
     ClientHomeComponent,
     CarouselComponent,
     ShoppingCartComponent,
-    ItemComponent],
+    ItemComponent,
+    ShoppingCartValidationComponent],
   providers: [
     ShoppingCartDataService,
     ItemService,

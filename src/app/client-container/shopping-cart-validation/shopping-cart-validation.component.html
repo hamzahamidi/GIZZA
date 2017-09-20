@@ -1,0 +1,54 @@
+<div class="container">
+  <div id="validationPage">
+    <div class="jumbotron">
+      <div class="row title">
+        <h2 class="text-center">Validez votre panier</h2>
+      </div>
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let shoppingItem of shoppingCartDataService.getShoppingItems()">
+            <div class="row">
+              <div class="col-lg-offset-1
+                          col-lg-10
+                          col-md-offset-1
+                          col-md-10
+                          col-sm-12
+                          col-xs-12">
+                <div class="col-sm-4 text-center">
+                  <button type="button"
+                          class="btn btn-default"
+                          (click)="removeOneShoppingItem(shoppingItem.item)"
+                          [disabled]="shoppingItem.quantity == 0">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                  <span>{{shoppingItem.quantity}}</span>
+                  <button type="button" class="btn btn-default" (click)="addOneShoppingItem(shoppingItem.item)">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </div>
+                <div class="col-sm-4 text-center"> <span class="itemTitle">{{shoppingItem.item.title}}</span></div>
+                <div class="col-sm-4 text-center">
+                  {{shoppingItem.item.price * shoppingItem.quantity}} €
+                </div>
+              </div>
+            </div>
+            <hr>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="text-center">Total: {{shoppingCartDataService.totalPrice()}} €</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <button type="button"
+                (click)="order()"
+                class="btn btn-default"
+                [disabled]="shoppingCartDataService.totalPrice() == 0">
+          Commander
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
