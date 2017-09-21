@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Item, TypeItem} from '../item/model';
+import {Item, TypeItem} from '../model/model';
 
 @Injectable()
 export class ShoppingCartDataService {

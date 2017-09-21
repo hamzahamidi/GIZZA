@@ -12,8 +12,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 // services
 import { ShoppingCartDataService } from './shopping-cart/shopping-cart-data.service';
 import { ItemComponent } from './item/item.component';
-import { ItemService} from './item/item.service';
+import { ItemService} from './service/item.service';
 import { ShoppingCartValidationComponent } from './shopping-cart-validation/shopping-cart-validation.component';
+import { OrderRecapitulationComponent} from './order-recapitulation/order-recapitulation.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ShoppingCartValidationComponent } from './shopping-cart-validation/shop
     CarouselComponent,
     ShoppingCartComponent,
     ItemComponent,
-    ShoppingCartValidationComponent],
+    ShoppingCartValidationComponent,
+    OrderRecapitulationComponent],
   providers: [
     ShoppingCartDataService,
     ItemService,

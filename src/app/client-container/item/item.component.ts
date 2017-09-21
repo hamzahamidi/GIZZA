@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
-import { ItemService } from './item.service';
+import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from '../model/model';
+import { ItemService } from '../service/item.service';
 import { ShoppingCartDataService } from '../shopping-cart/shopping-cart-data.service';
 
 import * as $ from 'jquery';
@@ -90,9 +90,9 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
   //Permet d'obtenir les catégories en fonction du type de produits demandé
   getCategories(type: string){
     this.itemService.getCategories().subscribe(data => {
-      for(let i = 0; i < data.item.data.length; i++){
-        if(data.item.data[i].type == type)
-          this.categories.push(new Category(data.item.data[i].id, data.item.data[i].libelle))
+      for(let i = 0; i < data.res.data.length; i++){
+        if(data.res.data[i].type == type)
+          this.categories.push(new Category(data.res.data[i].id, data.res.data[i].libelle))
       }
     });
     this.categories.push(new Category(0, "Tous"))
@@ -105,14 +105,14 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
       this.items = [];
       this.items_quantity = [];
 
-      for(let i = 0; i < data.item.data.length; i++){
+      for(let i = 0; i < data.res.data.length; i++){
         this.items.push(new Item(
-          data.item.data[i].id,
-          data.item.data[i].nom,
-          data.item.data[i].description,
-          data.item.data[i].prix,
-          data.item.data[i].categorieId,
-          data.item.data[i].url,
+          data.res.data[i].id,
+          data.res.data[i].nom,
+          data.res.data[i].description,
+          data.res.data[i].prix,
+          data.res.data[i].categorieId,
+          data.res.data[i].url,
           TypeItem.PIZZA,
           0
         ));
@@ -135,14 +135,14 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
         this.items = [];
         this.items_quantity = [];
 
-        for(let i = 0; i < data.item.produits.length; i++){
+        for(let i = 0; i < data.res.produits.length; i++){
           this.items.push(new Item(
-            data.item.produits[i].id,
-            data.item.produits[i].nom,
-            data.item.produits[i].description,
-            data.item.produits[i].prix,
-            data.item.produits[i].categorieId,
-            data.item.produits[i].url,
+            data.res.produits[i].id,
+            data.res.produits[i].nom,
+            data.res.produits[i].description,
+            data.res.produits[i].prix,
+            data.res.produits[i].categorieId,
+            data.res.produits[i].url,
             TypeItem.PIZZA,
             0
           ));
