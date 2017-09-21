@@ -1,40 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from './model';
 import { ItemService } from './item.service';
 import { ShoppingCartDataService } from '../shopping-cart/shopping-cart-data.service';
+
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
 
- // public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
+  // public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
   public imgSrc = '../../../../assets/image/banner.png';
   items: Item[] = [];
   items_quantity: {item: Item, quantity: number}[] = [];
   categories: Category[] = [];
   type: TypeItem;
 
+  //Attribute for shopping-cart position
+  shoppingCart: any;
+  shoppingCartPosition: any;
+
   constructor(private router: Router,
     private itemService: ItemService, public shoppingCartDataService: ShoppingCartDataService) { }
 
   ngOnInit() {
-    // shopping cart position
-    const shoppingCart = document.getElementById('shopping-cart');
-    const shoppingCartPosition = shoppingCart.getBoundingClientRect().top;
-
-    window.addEventListener('scroll', function () {
-      if (window.pageYOffset >= shoppingCartPosition) {
-        shoppingCart.style.position = 'fixed';
-        shoppingCart.style.top = '25px';
-      } else {
-        shoppingCart.style.position = 'absolute';
-        shoppingCart.style.top = '';
-      }
-    });
 
     let stringRoute = this.router.url;
     let splitRoute = stringRoute.split("/");
@@ -46,7 +39,7 @@ export class ItemComponent implements OnInit {
       this.getCategories("PIZZA");
     }
     else if (routeItem == TypeItem.DESSERT.toString()) {
-      this.type = TypeItem.DESSERT
+      this.type = TypeItem.DESSERT;
       this.getItems();
       this.getCategories("DESSERT");
     }
@@ -59,6 +52,21 @@ export class ItemComponent implements OnInit {
     //Test du service d'appel au Backend
     //this.itemService.getTestDep().subscribe(data => console.log(data));
   }
+
+  ngAfterViewInit(): void {
+    //Gestion de la position du shopping-cart
+    this.shoppingCart = document.getElementById('shopping-cart');
+    this.shoppingCartPosition = this.shoppingCart.getBoundingClientRect().top;
+
+    $(window).on('scroll',
+        {shoppingCart: this.shoppingCart, shoppingCartPosition: this.shoppingCartPosition},
+        this.placeShoppingCartOnScroll);
+  }
+
+  ngOnDestroy(): void {
+    $(window).off('scroll', this.placeShoppingCartOnScroll);
+  }
+
 
   plus(item_quantity: any) {
     if (item_quantity.quantity < 10) {
@@ -82,9 +90,9 @@ export class ItemComponent implements OnInit {
   //Permet d'obtenir les catégories en fonction du type de produits demandé
   getCategories(type: string){
     this.itemService.getCategories().subscribe(data => {
-      for(let i = 0; i < data.items.length; i++){
-        if(data.items[i].type == type)
-          this.categories.push(new Category(data.items[i].id, data.items[i].libelle))
+      for(let i = 0; i < data.item.data.length; i++){
+        if(data.item.data[i].type == type)
+          this.categories.push(new Category(data.item.data[i].id, data.item.data[i].libelle))
       }
     });
     this.categories.push(new Category(0, "Tous"))
@@ -94,17 +102,17 @@ export class ItemComponent implements OnInit {
 
     this.itemService.getItems(this.type).subscribe(data => {
 
-      this.items = []
+      this.items = [];
       this.items_quantity = [];
 
-      for(let i = 0; i < data.items.length; i++){
+      for(let i = 0; i < data.item.data.length; i++){
         this.items.push(new Item(
-          data.items[i].id,
-          data.items[i].nom,
-          data.items[i].description,
-          data.items[i].prix,
-          data.items[i].categorieId,
-          data.items[i].url,
+          data.item.data[i].id,
+          data.item.data[i].nom,
+          data.item.data[i].description,
+          data.item.data[i].prix,
+          data.item.data[i].categorieId,
+          data.item.data[i].url,
           TypeItem.PIZZA,
           0
         ));
@@ -127,14 +135,14 @@ export class ItemComponent implements OnInit {
         this.items = [];
         this.items_quantity = [];
 
-        for(let i = 0; i < data.items.produits.length; i++){
+        for(let i = 0; i < data.item.produits.length; i++){
           this.items.push(new Item(
-            data.items.produits[i].id,
-            data.items.produits[i].nom,
-            data.items.produits[i].description,
-            data.items.produits[i].prix,
-            data.items.produits[i].categorieId,
-            data.items.produits[i].url,
+            data.item.produits[i].id,
+            data.item.produits[i].nom,
+            data.item.produits[i].description,
+            data.item.produits[i].prix,
+            data.item.produits[i].categorieId,
+            data.item.produits[i].url,
             TypeItem.PIZZA,
             0
           ));
@@ -145,6 +153,19 @@ export class ItemComponent implements OnInit {
           this.items_quantity.push({item: this.items[i], quantity: 1});
         }
       });
+    }
+  }
+
+  placeShoppingCartOnScroll(prop){
+    const shoppingCart = prop.data.shoppingCart;
+    const shoppingCartPosition = prop.data.shoppingCartPosition;
+
+    if (window.pageYOffset >= shoppingCartPosition) {
+      shoppingCart.style.position = 'fixed';
+      shoppingCart.style.top = '25px';
+    } else {
+      shoppingCart.style.position = 'absolute';
+      shoppingCart.style.top = '';
     }
   }
 }

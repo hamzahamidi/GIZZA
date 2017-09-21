@@ -18,12 +18,10 @@ export class ShoppingCartValidationComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-/*
     if(!this.userDataService.getConnected()){
       this.routerDataService.setRedirected(true);
       this.router.navigate(['/user/login']);
     }
-*/
   }
 
   order(){

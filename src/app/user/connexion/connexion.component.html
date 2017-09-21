@@ -2,58 +2,62 @@
   <div id="appHeader">
     <app-header></app-header>
   </div>
-  <div class="container">
-    <div *ngIf="!userDataService.getConnected()
-                  && routerDataService.getRedirected()
-                  && routerDataService.getLastVisitedUrl() == '/purchase/shopping-cart-validation'"
-         id="notificationError"
-         class="col-lg-offset-3 col-lg-6 alert alert-danger text-center">
-      Merci vous identifier afin de valider votre commande
-    </div>
-    <div id="connexionPage">
-      <div class="col-lg-offset-3 col-lg-6 jumbotron">
+  <div id="connexionPage">
+    <div class="container">
+      <div id="connexionInnerPage">
         <div class="row">
-          <h2>Connectez-vous à votre compte</h2>
-        </div>
-        <div class="row">
-          <form (ngSubmit)="onSubmit()" #connexionForm="ngForm">
-            <div class="form-group row">
-              <div class="col-lg-4 right-align">
-                <label for="pseudo">Pseudo</label>
-              </div>
-              <div class="col-lg-7">
-                <input type="text" class="form-control" id="pseudo"
-                       required
-                       [(ngModel)]="model.pseudo" name="pseudo"
-                       placeholder="Pseudo"
-                       #pseudo="ngModel">
-                <div [hidden]="pseudo.valid || pseudo.pristine"
-                     class="alert alert-danger">
-                  Un pseudo est requis
-                </div>
-              </div>
+          <div *ngIf="!userDataService.getConnected()
+                      && routerDataService.getRedirected()
+                      && routerDataService.getLastVisitedUrl() == '/purchase/shopping-cart-validation'"
+               id="notificationError"
+               class="col-lg-offset-3 col-lg-6 alert alert-danger text-center">
+            Merci vous identifier afin de valider votre commande
+          </div>
+          <div class="col-lg-offset-3 col-lg-6 jumbotron">
+            <div class="row">
+              <h2>Connectez-vous à votre compte</h2>
             </div>
-            <div class="form-group row">
-              <div class="col-lg-4 right-align">
-                <label for="password">Mot de passe</label>
-              </div>
-              <div class="col-lg-7">
-                <input type="password" class="form-control" id="password"
-                       required
-                       [(ngModel)]="model.password" name="password"
-                       placeholder="Mot de passe"
-                       #password="ngModel">
-                <div [hidden]="password.valid || password.pristine"
-                     class="alert alert-danger">
-                  Un mot de passe est requis
+            <div class="row">
+              <form (ngSubmit)="onSubmit()" #connexionForm="ngForm">
+                <div class="form-group row">
+                  <div class="col-lg-4 right-align">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <input type="text" class="form-control" id="email"
+                           required
+                           [(ngModel)]="model.email" name="email"
+                           placeholder="Email"
+                           #pseudo="ngModel">
+                    <div [hidden]="pseudo.valid || pseudo.pristine"
+                         class="alert alert-danger">
+                      Une adresse mail est requise
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="form-group row">
+                  <div class="col-lg-4 right-align">
+                    <label for="password">Mot de passe</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <input type="password" class="form-control" id="password"
+                           required
+                           [(ngModel)]="model.password" name="password"
+                           placeholder="Mot de passe"
+                           #password="ngModel">
+                    <div [hidden]="password.valid || password.pristine"
+                         class="alert alert-danger">
+                      Un mot de passe est requis
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-default" [disabled]="!connexionForm.form.valid">Connexion</button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-default" [disabled]="!connexionForm.form.valid">Connexion</button>
-          </form>
-        </div>
-        <div class="row registrationLink">
-          <a routerLink="/user/reinitialise" routerLinkActive="active">Mot de passe oublié ? </a>| Pas de compte? <a routerLink="/user/registration" routerLinkActive="active">Je m'inscris</a>
+            <div class="row registrationLink">
+              <a routerLink="/user/reinitialise" routerLinkActive="active">Mot de passe oublié ? </a>| Pas de compte? <a routerLink="/user/registration" routerLinkActive="active">Je m'inscris</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

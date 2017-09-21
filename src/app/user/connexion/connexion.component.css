@@ -6,12 +6,6 @@
   border-left: 5px solid #a94442; /* red */
 }
 
-div.connexionForm {
-  border: 1px solid lightgrey;
-  border-radius: 10px;
-  padding: 2%;
-}
-
 .jumbotron{
   background-color: #FDFAD5;
 }
