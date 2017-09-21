@@ -24,7 +24,6 @@ export class RegistrationComponent implements OnInit {
     this.userForm = this.fb.group({
       firstName: ["", Validators.required ],
       lastName : ["", Validators.compose([Validators.required, Validators.minLength(3)]) ],
-      pseudo : ["", Validators.required],
       address : ["", Validators.required ],
       phoneNumber : ['', Validators.compose([
         Validators.required,
@@ -73,7 +72,6 @@ export class RegistrationComponent implements OnInit {
     if(this.userDataService.getConnected()){
       this.userForm.controls['firstName'].setValue(this.userDataService.getFirstName());
       this.userForm.controls['lastName'].setValue(this.userDataService.getLastName());
-      this.userForm.controls['pseudo'].setValue(this.userDataService.getPseudo()),
       this.userForm.controls['address'].setValue(this.userDataService.getAddress()),
       this.userForm.controls['phoneNumber'].setValue(this.userDataService.getPhoneNumber()),
       this.userForm.controls['email'].setValue(this.userDataService.getEmail())
@@ -84,7 +82,6 @@ export class RegistrationComponent implements OnInit {
 
     this.userDataService.setFirstName(this.userForm.controls['firstName'].value);
     this.userDataService.setLastName(this.userForm.controls['lastName'].value);
-    this.userDataService.setPseudo(this.userForm.controls['pseudo'].value);
     this.userDataService.setAddress(this.userForm.controls['address'].value);
     this.userDataService.setPhoneNumber(this.userForm.controls['phoneNumber'].value);
     this.userDataService.setEmail(this.userForm.controls['email'].value);

@@ -5,7 +5,6 @@ export class UserDataService{
 
   private firstName: string;
   private lastName: string;
-  private pseudo: string;
   private address: string;
   private phoneNumber: string;
   private email: string;
@@ -17,7 +16,6 @@ export class UserDataService{
   constructor(){
     this.firstName = '';
     this.lastName = '';
-    this.pseudo = '';
     this.address = '';
     this.phoneNumber = '';
     this.email = '';
@@ -33,10 +31,6 @@ export class UserDataService{
 
   public getLastName(){
     return this.lastName;
-  }
-
-  public getPseudo(){
-    return this.pseudo;
   }
 
   public getAddress(){
@@ -75,10 +69,6 @@ export class UserDataService{
     this.lastName = lastName;
   }
 
-  public setPseudo(pseudo: string){
-    this.pseudo = pseudo;
-  }
-
   public setAddress(address: string){
     this.address = address;
   }
@@ -110,7 +100,6 @@ export class UserDataService{
   initUserDataService(){
     this.setFirstName('');
     this.setLastName('');
-    this.setPseudo('');
     this.setEmail('');
     this.setPhoneNumber('');
     this.setPassword('');

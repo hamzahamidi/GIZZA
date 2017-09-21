@@ -14,52 +14,52 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  public getCategories(): Observable<ItemsResponse>{
+  public getCategories(): Observable<ItemResponse>{
     return this.http.get(gizzaBackEndAPIConfig.searchAllCategoriesUrl)
       .map(res => {
         const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-        return {err: null, items: body};
+        return {err: null, item: body};
       })
       .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, items: null});
+        return Observable.of({err: err, item: null});
       });
   }
 
-  public getItems(type: TypeItem): Observable<ItemsResponse>{
+  public getItems(type: TypeItem): Observable<ItemResponse>{
     if(type == TypeItem.PIZZA){
       return this.http.get(gizzaBackEndAPIConfig.searchAllPizzasUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, items: body};
+          return {err: null, item: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, items: null});
+          return Observable.of({err: err, item: null});
         });
     }else if(type == TypeItem.DRINK){
       return this.http.get(gizzaBackEndAPIConfig.searchAllDrinksUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, items: body};
+          return {err: null, item: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, items: null});
+          return Observable.of({err: err, item: null});
         });
     }else if(type == TypeItem.DESSERT){
       return this.http.get(gizzaBackEndAPIConfig.searchAllDessertsUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, items: body};
+          return {err: null, item: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, items: null});
+          return Observable.of({err: err, item: null});
       });
     }
   }
@@ -72,11 +72,11 @@ export class ItemService {
       .map(res => {
         const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-        return {err: null, items: body};
+        return {err: null, item: body};
       })
       .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, items: null});
+        return Observable.of({err: err, item: null});
       });
   }
 
@@ -101,5 +101,5 @@ export interface ItemsResponse{
 
 export interface ItemResponse {
   err: any;
-  items: any;
+  item: any;
 }
