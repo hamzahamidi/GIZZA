@@ -12,6 +12,7 @@ export class AdminCategoryComponent implements OnInit {
 
   categories: Category[] = [];
   currentType:string;
+  selectedCategory:Category;
   constructor( private itemService: ItemService) { }
 
   ngOnInit() {
@@ -29,5 +30,8 @@ export class AdminCategoryComponent implements OnInit {
       }
     });
     this.categories.push(new Category(0, "Tous"));
+    this.categories.push(new Category(0, "Tous"));
+    this.categories.push(new Category(0, "Tous"));
+
   }
 }
