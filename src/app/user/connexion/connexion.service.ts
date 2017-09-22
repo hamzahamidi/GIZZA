@@ -73,7 +73,7 @@ export class ConnexionService {
     }).do(currentUser => {
       if (currentUser.username) {
         this.userDataService.setConnected(true);
-        this.userDataService.setPseudo(currentUser.username);
+        this.userDataService.setEmail(currentUser.username);
       }
     }).subscribe();
   }

@@ -74,7 +74,7 @@ export class RegistrationComponent implements OnInit {
     if(this.userDataService.getConnected()){
       this.userForm.controls['firstName'].setValue(this.userDataService.getFirstName());
       this.userForm.controls['lastName'].setValue(this.userDataService.getLastName());
-      this.userForm.controls['pseudo'].setValue(this.userDataService.getPseudo()),
+      this.userForm.controls['email'].setValue(this.userDataService.getEmail()),
       this.userForm.controls['address'].setValue(this.userDataService.getAddress()),
       this.userForm.controls['phoneNumber'].setValue(this.userDataService.getPhoneNumber()),
       this.userForm.controls['email'].setValue(this.userDataService.getEmail())
