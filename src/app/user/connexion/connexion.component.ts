@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UserDataService} from '../../core/user-data/user-data.service';
-import {NavigationEnd, Router} from '@angular/router';
-import {RouterDataService} from '../../core/router-data/router-data.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserDataService } from '../../core/user-data/user-data.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { RouterDataService } from '../../core/router-data/router-data.service';
+import { ConnexionService } from './connexion.service';
 
 @Component({
   selector: 'app-connexion',
@@ -9,6 +10,7 @@ import {RouterDataService} from '../../core/router-data/router-data.service';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit, OnDestroy {
+  loginInvalid: boolean;
 
   model = {
     pseudo: '',
@@ -16,15 +18,15 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   };
 
   constructor(public userDataService: UserDataService,
-              public routerDataService: RouterDataService,
-              private router: Router) { }
+    public routerDataService: RouterDataService,
+    private router: Router, private connexionService: ConnexionService) { }
 
   ngOnInit() {
 
     window.addEventListener('resize', resizeConnexionPage);
     resizeConnexionPage();
 
-    function resizeConnexionPage(){
+    function resizeConnexionPage() {
       let appHeader = document.getElementById('appHeader');
       let appHeaderHeight = appHeader.getBoundingClientRect().height;
 
@@ -35,7 +37,7 @@ export class ConnexionComponent implements OnInit, OnDestroy {
       let connexionPageHeight = window.innerHeight - appHeaderHeight - appFooterHeight - 1;
       let actualConnexionPageHeight = connexionPage.getBoundingClientRect().height;
 
-      if(actualConnexionPageHeight < connexionPageHeight)
+      if (actualConnexionPageHeight < connexionPageHeight)
         connexionPage.style.height = connexionPageHeight + 'px';
       else
         connexionPage.style.height = actualConnexionPageHeight + 'px';
@@ -47,10 +49,14 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if(this.model.pseudo.length > 0){
-      this.userDataService.setConnected(true);
-      this.userDataService.setPseudo(this.model.pseudo);
-      this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
-    }
+    this.connexionService.authUser(this.model.pseudo, this.model.password).subscribe(resp => {
+      if (!resp) {
+        this.loginInvalid = true;
+      } else {
+        this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
+        this.userDataService.setConnected(true);
+        this.userDataService.setPseudo(this.model.pseudo);
+      }
+    });
   }
 }
