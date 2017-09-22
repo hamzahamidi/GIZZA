@@ -4,5 +4,5 @@ export const gizzaBackEndAPIConfig = {
   searchAllDrinksUrl: '/gizza/api/boisson/get/all',
   searchAllDessertsUrl: '/gizza/api/dessert/get/all',
   searchItemsByCategoryUrl: '/gizza/api/categorie/get/by/id/',
-  searchTestUrl: 'https://geo.api.gouv.fr/departements'
+  addOrderUrl: 'gizza/api/commande/add'
 };

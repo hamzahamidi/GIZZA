@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import * as $ from 'jquery';
-import {UserDataService} from '../../core/user-data/user-data.service';
+import {UserDataService} from '../../../core/user-data/user-data.service';
 import {Router} from '@angular/router';
 
+import * as $ from 'jquery';
+
 @Component({
-  selector: 'app-reactive-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-my-account-modification',
+  templateUrl: './my-account-modification.component.html',
+  styleUrls: ['./my-account-modification.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class MyAccountModificationComponent implements OnInit {
 
   userForm: FormGroup;
 
@@ -58,19 +59,25 @@ export class RegistrationComponent implements OnInit {
 
     $('span.passwordFormatInfo').hover(function(){
 
-        $('div.passwordFormat').position({
-          top: $(this).position().top,
-          left: $(this).position().left
-        });
-        $('div.passwordFormat').css('display', 'block');
+      $('div.passwordFormat').position({
+        top: $(this).position().top,
+        left: $(this).position().left
+      });
+      $('div.passwordFormat').css('display', 'block');
 
     }, function(){
       $('div.passwordFormat').css('display', 'none');
     });
+
+    this.userForm.controls['firstName'].setValue(this.userDataService.getFirstName());
+    this.userForm.controls['lastName'].setValue(this.userDataService.getLastName());
+    this.userForm.controls['address'].setValue(this.userDataService.getAddress()),
+    this.userForm.controls['phoneNumber'].setValue(this.userDataService.getPhoneNumber()),
+    this.userForm.controls['email'].setValue(this.userDataService.getEmail())
+
   }
 
   ngSubmit(){
-
     this.userDataService.setFirstName(this.userForm.controls['firstName'].value);
     this.userDataService.setLastName(this.userForm.controls['lastName'].value);
     this.userDataService.setAddress(this.userForm.controls['address'].value);
@@ -79,10 +86,10 @@ export class RegistrationComponent implements OnInit {
     this.userDataService.setPassword(this.userForm.controls['password'].value);
     this.userDataService.setConnected(true);
 
-    this.router.navigate(['/purchase']);
+    this.router.navigate(['/user/my-account/home']);
   }
 
   cancel(){
-      this.router.navigate(['/purchase'])
+    this.router.navigate(['/user/my-account/home']);
   }
 }

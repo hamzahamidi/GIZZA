@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCartDataService} from '../shopping-cart/shopping-cart-data.service';
-import {Item} from '../item/model';
+import {Item} from '../model/model';
 import {UserDataService} from '../../core/user-data/user-data.service';
 import {Router} from '@angular/router';
 import {RouterDataService} from '../../core/router-data/router-data.service';
@@ -25,7 +25,7 @@ export class ShoppingCartValidationComponent implements OnInit {
   }
 
   order(){
-    console.log('You have sent your order');
+    this.router.navigate(['/purchase/order-recapitulation']);
   }
 
   carryOnPurchase(){

@@ -3,10 +3,7 @@
   <div class="container">
     <div class="col-lg-offset-3 col-lg-6 jumbotron">
       <div class="row">
-        <h2 *ngIf="!userDataService.getConnected(); else elseH2;" class="text-center">Créez votre compte</h2>
-        <ng-template #elseH2>
-          <h2 class="text-center">Modifiez vos informations</h2>
-        </ng-template>
+        <h2 class="text-center">Créez votre compte</h2>
       </div>
       <div class="row">
         <form [formGroup]="userForm" (ngSubmit)="ngSubmit()">
@@ -82,17 +79,11 @@
               </div>
             </div>
           </div>
-          <button *ngIf="!userDataService.getConnected(); else elseSubmitButton;"
-                  type="submit"
+          <button type="submit"
                   [disabled]="!userForm.valid"
                   class="btn btn-default">
             Creer mon compte
           </button>
-          <ng-template #elseSubmitButton>
-            <button type="submit" [disabled]="!userForm.valid" class="btn btn-default">
-              Modifier
-            </button>
-          </ng-template>
           <button (click)="cancel()" class="btn btn-default">
             Annuler
           </button>

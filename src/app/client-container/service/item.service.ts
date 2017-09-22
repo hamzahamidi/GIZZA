@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -7,64 +7,64 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 
 import { gizzaBackEndAPIConfig } from '../../shared/gizzaBackEndAPIConfig';
-import {TypeItem} from './model';
+import {Item, TypeItem} from '../model/model';
 
 @Injectable()
 export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  public getCategories(): Observable<ItemResponse>{
+  public getCategories(): Observable<ApiResponse>{
     return this.http.get(gizzaBackEndAPIConfig.searchAllCategoriesUrl)
       .map(res => {
         const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-        return {err: null, item: body};
+        return {err: null, res: body};
       })
       .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, item: null});
+        return Observable.of({err: err, res: null});
       });
   }
 
-  public getItems(type: TypeItem): Observable<ItemResponse>{
+  public getItems(type: TypeItem): Observable<ApiResponse>{
     if(type == TypeItem.PIZZA){
       return this.http.get(gizzaBackEndAPIConfig.searchAllPizzasUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, item: body};
+          return {err: null, res: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, item: null});
+          return Observable.of({err: err, res: null});
         });
     }else if(type == TypeItem.DRINK){
       return this.http.get(gizzaBackEndAPIConfig.searchAllDrinksUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, item: body};
+          return {err: null, res: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, item: null});
+          return Observable.of({err: err, res: null});
         });
     }else if(type == TypeItem.DESSERT){
       return this.http.get(gizzaBackEndAPIConfig.searchAllDessertsUrl)
         .map(res => {
           const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-          return {err: null, item: body};
+          return {err: null, res: body};
         })
         .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-          return Observable.of({err: err, item: null});
+          return Observable.of({err: err, res: null});
       });
     }
   }
 
-  public getItemsByCategory(id: number): Observable<ItemResponse>{
+  public getItemsByCategory(id: number): Observable<ApiResponse>{
 
     let searchItemsByCategoryUrl = gizzaBackEndAPIConfig.searchItemsByCategoryUrl + id;
 
@@ -72,34 +72,35 @@ export class ItemService {
       .map(res => {
         const body: any = res;
 //          console.log(JSON.stringify(body, null, 2));
-        return {err: null, item: body};
+        return {err: null, res: body};
       })
       .catch(err => {
 //        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, item: null});
+        return Observable.of({err: err, res: null});
       });
   }
 
-  public getTestDep(): Observable<ItemsResponse>{
-    return this.http.get(gizzaBackEndAPIConfig.searchTestUrl)
-      .map(res => {
+    public sendOrder(orderItems: {idProduit:number, quantite: number}[]){
+
+      const headers = new HttpHeaders()
+        .set("Content-Type", "application/json");
+
+      return this.http.post(gizzaBackEndAPIConfig.addOrderUrl,
+            {data: orderItems},
+        {headers})
+        .map(res => {
           const body: any = res;
-//          console.log(JSON.stringify(body, null, 2));
-          return {err: null, items: body};
+          return {err: null, res: body};
         })
-      .catch(err => {
-//        console.log('Server error: ' + JSON.stringify(err, null, 2));
-        return Observable.of({err: err, items: null});
-      });
+        .catch(err => {
+          return Observable.of({err: err, res: null});
+        });
+
     }
+
 }
 
-export interface ItemsResponse{
+export interface ApiResponse {
   err: any;
-  items: any[];
-}
-
-export interface ItemResponse {
-  err: any;
-  item: any;
+  res: any;
 }

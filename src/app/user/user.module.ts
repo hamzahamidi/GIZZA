@@ -15,6 +15,10 @@ import { ReinitialiseComponent } from './reinitialise/reinitialise.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ConnexionComponent, RegistrationComponent, UserComponent, RegistrationComponent, ReinitialiseComponent],
+  declarations: [ConnexionComponent,
+                  RegistrationComponent,
+                  UserComponent,
+                  RegistrationComponent,
+                  ReinitialiseComponent],
 })
 export class UserModule { }
