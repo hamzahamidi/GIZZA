@@ -1,14 +1,16 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {UserDataService} from '../../core/user-data/user-data.service';
-import {NavigationEnd, Router} from '@angular/router';
-import {RouterDataService} from '../../core/router-data/router-data.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserDataService } from '../../core/user-data/user-data.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { RouterDataService } from '../../core/router-data/router-data.service';
+import { ConnexionService } from './connexion.service';
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
-export class ConnexionComponent implements OnInit, OnDestroy, AfterViewInit{
+export class ConnexionComponent implements OnInit, OnDestroy {
+  loginInvalid: boolean;
 
   model = {
     email: '',
@@ -16,8 +18,8 @@ export class ConnexionComponent implements OnInit, OnDestroy, AfterViewInit{
   };
 
   constructor(public userDataService: UserDataService,
-              public routerDataService: RouterDataService,
-              private router: Router) { }
+    public routerDataService: RouterDataService,
+    private router: Router, private connexionService: ConnexionService) { }
 
   ngOnInit() {}
 
@@ -29,14 +31,6 @@ export class ConnexionComponent implements OnInit, OnDestroy, AfterViewInit{
   ngOnDestroy(): void {
     window.removeEventListener('resize', this.resizeConnexionPage);
     this.routerDataService.setRedirected(false);
-  }
-
-  onSubmit() {
-    if(this.model.email.length > 0){
-      this.userDataService.setConnected(true);
-      this.userDataService.setEmail(this.model.email);
-      this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
-    }
   }
 
   resizeConnexionPage(){
@@ -57,4 +51,15 @@ export class ConnexionComponent implements OnInit, OnDestroy, AfterViewInit{
       connexionPage.style.height = connexionInnerPageHeight + 'px';
   }
 
+  onSubmit() {
+    this.connexionService.authUser(this.model.email, this.model.password).subscribe(resp => {
+      if (!resp) {
+        this.loginInvalid = true;
+      } else {
+        this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
+        this.userDataService.setConnected(true);
+        this.userDataService.setEmail(this.model.email);
+      }
+    });
+  }
 }

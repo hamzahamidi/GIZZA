@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import * as $ from 'jquery';
-import {UserDataService} from '../../core/user-data/user-data.service';
-import {Router} from '@angular/router';
+import { UserDataService } from '../../core/user-data/user-data.service';
+import { Router } from '@angular/router';
+import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-reactive-registration',
@@ -15,8 +16,9 @@ export class RegistrationComponent implements OnInit {
   userForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              public userDataService: UserDataService,
-              private router: Router) {
+    public userDataService: UserDataService,
+    private router: Router,
+    private registrationService: RegistrationService) {
     this.createForm();
   }
 
@@ -67,19 +69,37 @@ export class RegistrationComponent implements OnInit {
     }, function(){
       $('div.passwordFormat').css('display', 'none');
     });
+//    console.log($('span.passwordFormatInfo'));
+
+    if(this.userDataService.getConnected()){
+      this.userForm.controls['firstName'].setValue(this.userDataService.getFirstName());
+      this.userForm.controls['lastName'].setValue(this.userDataService.getLastName());
+      this.userForm.controls['email'].setValue(this.userDataService.getEmail()),
+      this.userForm.controls['address'].setValue(this.userDataService.getAddress()),
+      this.userForm.controls['phoneNumber'].setValue(this.userDataService.getPhoneNumber()),
+      this.userForm.controls['email'].setValue(this.userDataService.getEmail())
+    }
   }
 
-  ngSubmit(){
+  ngSubmit() {
+      this.registrationService.register(this.userForm.controls['email'].value,
+      this.userForm.controls['password'].value, this.userForm.controls['lastName'].value,
+      this.userForm.controls['firstName'].value, this.userForm.controls['address'].value,
+      this.userForm.controls['phoneNumber'].value).subscribe(resp => {
+        if (!resp) {
+          // this.loginInvalid = true;
+        } else {
+          this.userDataService.setFirstName(this.userForm.controls['firstName'].value);
+          this.userDataService.setLastName(this.userForm.controls['lastName'].value);
+          this.userDataService.setAddress(this.userForm.controls['address'].value);
+          this.userDataService.setPhoneNumber(this.userForm.controls['phoneNumber'].value);
+          this.userDataService.setEmail(this.userForm.controls['email'].value);
+          this.userDataService.setPassword(this.userForm.controls['password'].value);
+          this.userDataService.setConnected(true);
 
-    this.userDataService.setFirstName(this.userForm.controls['firstName'].value);
-    this.userDataService.setLastName(this.userForm.controls['lastName'].value);
-    this.userDataService.setAddress(this.userForm.controls['address'].value);
-    this.userDataService.setPhoneNumber(this.userForm.controls['phoneNumber'].value);
-    this.userDataService.setEmail(this.userForm.controls['email'].value);
-    this.userDataService.setPassword(this.userForm.controls['password'].value);
-    this.userDataService.setConnected(true);
-
-    this.router.navigate(['/purchase']);
+          this.router.navigate(['/purchase']);
+        }
+      });
   }
 
   cancel(){

@@ -57,6 +57,8 @@
             <div class="row registrationLink">
               <a routerLink="/user/reinitialise" routerLinkActive="active">Mot de passe oublié ? </a>| Pas de compte? <a routerLink="/user/registration" routerLinkActive="active">Je m'inscris</a>
             </div>
+            <br>
+            <div *ngIf="loginInvalid" class="alert alert-danger">Nom d'utilisateur ou mot de passe invalide</div>
           </div>
         </div>
       </div>
