@@ -12,7 +12,8 @@ export const userRoutes: Routes = [
     children: [
       { path: 'login', component: ConnexionComponent },
       { path: 'registration', component: RegistrationComponent },
-      { path: 'reinitialise', component: ReinitialiseComponent}
+      { path: 'reinitialise', component: ReinitialiseComponent},
+      { path: 'my-account', loadChildren: 'app/user/my-account/my-account.module#MyAccountModule'},
     ]
   }
 ];

@@ -80,12 +80,12 @@ export class ItemService {
       });
   }
 
-    public sendOrder(orderItems: {item:Item, quantity: number}[]){
+    public sendOrder(orderItems: {itemId:number, quantity: number}[]){
 
       const headers = new HttpHeaders()
         .set("Content-Type", "application/json");
 
-      return this.http.put(gizzaBackEndAPIConfig.addOrderUrl,
+      return this.http.post(gizzaBackEndAPIConfig.addOrderUrl,
             {data: orderItems},
         {headers})
         .map(res => {
