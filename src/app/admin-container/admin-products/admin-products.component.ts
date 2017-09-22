@@ -24,9 +24,9 @@ export class AdminProductsComponent implements OnInit {
     this.currentType = type;
     this.categories.length = 0;
     this.itemService.getCategories().subscribe(data => {
-      for(let i = 0; i < data.items.length; i++){
-        if(data.items[i].type == type)
-          this.categories.push(new Category(data.items[i].id, data.items[i].libelle))
+      for(let i = 0; i < data.item.data.length; i++){
+        if(data.item.data[i].type == type)
+          this.categories.push(new Category(data.item.data[i].id, data.item.data[i].libelle))
       }
     });
     this.categories.push(new Category(0, "Tous"));
