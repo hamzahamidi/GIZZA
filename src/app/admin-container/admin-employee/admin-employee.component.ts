@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from "../../client-container/item/model";
+import {Category} from "../../client-container/model/model";
 
 @Component({
   selector: 'app-admin-employee',

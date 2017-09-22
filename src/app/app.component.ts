@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     private routerDataService: RouterDataService,
     private user: ConnexionService,
     public userDataService: UserDataService) {
+/*
     this.jwt = localStorage.getItem('currentUser');
     const jwtObject = JSON.parse(this.jwt);
     let decodedJwt: any;
@@ -25,13 +26,14 @@ export class AppComponent implements OnInit {
     if (jwtObject.token) {
       if ((new Date().getTime() / 1000 - 9000) < decodedJwt.exp) {
         this.userDataService.setConnected(true);
-        this.userDataService.setPseudo(decodedJwt.sub);
+        this.userDataService.setEmail(decodedJwt.sub);
         console.log("ohayou", typeof (decodedJwt));
         console.log("ohayou", decodedJwt.exp);
         console.log("time", (new Date().getTime() / 1000 + 9000));
         console.log("comparaison", (new Date().getTime() / 1000 - 9000) > decodedJwt.exp);
       }
     }
+*/
   }
 
   ngOnInit(): void {
