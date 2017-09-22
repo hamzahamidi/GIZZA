@@ -21,18 +21,14 @@
   text-transform: uppercase;
 }
 
-ul.list-group{
-  width: 30%;
-
-}
 
 .glyphicon-trash{
   color: #faa5aa;
 }
-
 .glyphicon-edit{
   color: #5F5B57;
 }
+
 .addCat{
   border: none;
   border-radius: 2px;
@@ -41,7 +37,7 @@ ul.list-group{
 }
 
 .btn-default:focus{
-outline: none;
+  outline: none;
 }
 
 .btn-default.submit{
@@ -62,6 +58,68 @@ outline: none;
 
 }
 
+.modal-title{
+  font-family: Avenir;
+}
+
+.form-group{
+  font-family: Avenir;
+  padding: 2%;
+}
+
+.list-group-item.products{
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+.list-group-item.addProduct{
+  background-color: transparent;
+  border: none;
+  margin-left: -15px;
+}
+
+.tableContainer{
+  border: none;
+  border-radius: 0px;
+  font-family: Avenir;
+  color: #5F5B57;
+}
+
+.tableHead{
+  font-size: 15px;
+  font-family: AvenirBold;
+}
+
+.panel-heading{
+  background-color: #AAB6B5;
+  border: none;
+}
+
+.panel.panel-primary.filterable{
+  border: none;
+  border-radius: 0px;
+}
+
+.btn-filter{
+  margin-top: -40px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  color: #5F5B57;
+  padding-left: 9px;
+}
+
+.btn-filter:active{
+  background-color: transparent;
+  outline: none;
+}
+
+span.glyphicon.glyphicon-plus{
+  color: #5F5B57;
+  text-align: center;
+}
+
 .btn-default.delete{
   background-color: transparent;
 }
@@ -70,22 +128,3 @@ outline: none;
   background-color: transparent;
 }
 
-.modal-title{
-  font-family: Avenir;
-}
-
-.form-group{
-  font-family: Avenir;
-}
-
-.list-group-item.addCategory{
-  background-color: transparent;
-  border: none;
-  margin-left: -15px;
-}
-
-.list-group-item.category{
-  background-color: #d5e4e3;
-  border: none;
-  border-top: 1px dotted rgba(200, 200, 200, 1);
-}

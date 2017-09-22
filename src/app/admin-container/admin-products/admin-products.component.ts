@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemService } from '../../../client-container/item/item.service';
-import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from '../../../client-container/item/model';
+import { ItemService } from '../../client-container/item/item.service';
+import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from '../../client-container/item/model';
 
 
 @Component({
-  selector: 'app-admin-category',
-  templateUrl: './admin-category.component.html',
-  styleUrls: ['./admin-category.component.css']
+  selector: 'app-admin-products',
+  templateUrl: './admin-products.component.html',
+  styleUrls: ['./admin-products.component.css']
 })
-export class AdminCategoryComponent implements OnInit {
+export class AdminProductsComponent implements OnInit {
 
   categories: Category[] = [];
   currentType:string;
-  selectedCategory:Category;
+  items: Item[] = [];
   constructor( private itemService: ItemService) { }
 
   ngOnInit() {
@@ -30,8 +30,7 @@ export class AdminCategoryComponent implements OnInit {
       }
     });
     this.categories.push(new Category(0, "Tous"));
-    this.categories.push(new Category(0, "Tous"));
-    this.categories.push(new Category(0, "Tous"));
-
+    this.categories.push(new Category(1, "All"));
   }
+
 }
