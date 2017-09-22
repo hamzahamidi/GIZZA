@@ -80,7 +80,7 @@ export class ItemService {
       });
   }
 
-    public sendOrder(orderItems: {itemId:number, quantity: number}[]){
+    public sendOrder(orderItems: {idProduit:number, quantite: number}[]){
 
       const headers = new HttpHeaders()
         .set("Content-Type", "application/json");

@@ -57,4 +57,8 @@ export class ShoppingCartDataService {
     return total;
   }
 
+  public initShoppinCart(){
+    this.setShoppingItems([]);
+  }
+
 }
