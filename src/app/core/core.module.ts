@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 //Services
 import { UserDataService } from './user-data/user-data.service';
 import { RouterDataService } from './router-data/router-data.service';
+import { UserGuardService} from './user-guard/user-guard.service';
+import { AdminGuardService} from './admin-guard/admin-guard.service';
+
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -11,6 +14,9 @@ import { HttpModule } from '@angular/http';
     CommonModule,
     HttpModule
   ],
-  providers: [ UserDataService, RouterDataService],
+  providers: [ UserDataService,
+                RouterDataService,
+                UserGuardService,
+                AdminGuardService],
 })
 export class CoreModule { }

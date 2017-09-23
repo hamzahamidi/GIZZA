@@ -23,7 +23,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
-            <a routerLink="/purchase/user/my-account/home" routerLinkActive="active">
+            <a routerLink="/purchase/user/my-account/home">
               <span class="glyphicon glyphicon-user"></span>
               <span class="monCompteText">Mon Compte</span>
             </a>
@@ -35,6 +35,15 @@
               <span class="monCompteText">Déconnexion</span>
             </a>
           </li>
+          <ng-container *ngIf="userDataService.getRole() == 'ADMIN'">
+            <li role="separator" class="divider"></li>
+            <li>
+              <a routerLink="/admin">
+                <span class="glyphicon glyphicon-lock"></span>
+                <span class="monCompteText">Administration</span>
+              </a>
+            </li>
+          </ng-container>
         </ul>
       </div>
     </ng-template>
