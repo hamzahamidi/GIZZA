@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/filter';
 import {RouterDataService} from '../../core/router-data/router-data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-container',
@@ -13,7 +14,8 @@ export class ClientContainerComponent implements OnInit {
 
   currentUrl: string = '';
 
-  constructor(public routerDataService: RouterDataService) { }
+  constructor(public routerDataService: RouterDataService,
+              public router: Router) {}
 
   ngOnInit() {}
 }

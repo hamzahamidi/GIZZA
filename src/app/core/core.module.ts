@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 //Services
 import { UserDataService } from './user-data/user-data.service';
 import { RouterDataService } from './router-data/router-data.service';
-import { ConnexionService } from '../user/connexion/connexion.service';
+import { ConnexionService } from '../client-container/user/connexion/connexion.service';
 import { HttpModule } from '@angular/http';
-import { RegistrationService } from '../user/registration/registration.service';
+import { RegistrationService } from '../client-container/user/registration/registration.service';
 
 @NgModule({
   imports: [

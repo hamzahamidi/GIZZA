@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { gizzaBackEndAPIConfig } from '../../shared/gizzaBackEndAPIConfig';
+import { gizzaBackEndAPIConfig } from '../../../shared/gizzaBackEndAPIConfig';
 import * as JWT from 'jwt-decode';
-import { UserDataService } from '../../core/user-data/user-data.service';
+import { UserDataService } from '../../../core/user-data/user-data.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 

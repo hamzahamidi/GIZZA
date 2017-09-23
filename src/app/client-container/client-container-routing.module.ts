@@ -19,7 +19,8 @@ export const clientContainerRoutes: Routes = [
             { path: 'drink', component: ItemComponent },
             { path: 'dessert', component: ItemComponent},
             { path: 'shopping-cart-validation', component: ShoppingCartValidationComponent},
-            { path: 'order-recapitulation', component: OrderRecapitulationComponent}
+            { path: 'order-recapitulation', component: OrderRecapitulationComponent},
+            { path: 'user', loadChildren: 'app/client-container/user/user.module#UserModule'},
         ]
     }
 ];

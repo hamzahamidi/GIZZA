@@ -20,7 +20,7 @@ export class ShoppingCartValidationComponent implements OnInit {
   ngOnInit() {
     if(!this.userDataService.getConnected()){
       this.routerDataService.setRedirected(true);
-      this.router.navigate(['/user/login']);
+      this.router.navigate(['/purchase/user/login']);
     }
   }
 

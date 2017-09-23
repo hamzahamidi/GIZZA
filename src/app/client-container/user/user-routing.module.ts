@@ -13,7 +13,7 @@ export const userRoutes: Routes = [
       { path: 'login', component: ConnexionComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'reinitialise', component: ReinitialiseComponent},
-      { path: 'my-account', loadChildren: 'app/user/my-account/my-account.module#MyAccountModule'},
+      { path: 'my-account', loadChildren: 'app/client-container/user/my-account/my-account.module#MyAccountModule'},
     ]
   }
 ];

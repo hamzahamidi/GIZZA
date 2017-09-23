@@ -1,7 +1,7 @@
 //Modules
 import { NgModule } from '@angular/core';
 import { MyAccountRoutingModule } from './my-account-routing.module';
-import { SharedModule} from '../../shared/shared.module';
+import { SharedModule} from '../../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //Composants

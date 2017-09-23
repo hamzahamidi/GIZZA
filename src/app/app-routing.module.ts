@@ -7,7 +7,6 @@ export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomePageComponent },
     { path: 'purchase', loadChildren: 'app/client-container/client-container.module#ClientContainerModule', data: { preload: true } },
-    { path: 'user', loadChildren: 'app/user/user.module#UserModule'},
     { path: 'admin', loadChildren: 'app/admin-container/admin-container.module#AdminContainerModule'},
     { path: '**', component: PageNotFoundComponent}
 ];

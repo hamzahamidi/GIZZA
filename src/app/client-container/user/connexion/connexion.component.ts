@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserDataService } from '../../core/user-data/user-data.service';
+import { UserDataService } from '../../../core/user-data/user-data.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { RouterDataService } from '../../core/router-data/router-data.service';
+import { RouterDataService } from '../../../core/router-data/router-data.service';
 import { ConnexionService } from './connexion.service';
 
 @Component({

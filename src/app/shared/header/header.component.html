@@ -6,7 +6,7 @@
       </a>
     </div>
     <div *ngIf="userDataService.getEmail().length == 0; else elseBlock;" class="col-xs-2">
-        <a routerLink="/user/login" routerLinkActive="active">
+        <a routerLink="/purchase/user/login" routerLinkActive="active">
         <span class="glyphicon glyphicon-user"></span>
         <span class="monCompteText">Mon Compte</span>
       </a>
@@ -23,7 +23,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
-            <a routerLink="/user/my-account" routerLinkActive="active">
+            <a routerLink="/purchase/user/my-account/home" routerLinkActive="active">
               <span class="glyphicon glyphicon-user"></span>
               <span class="monCompteText">Mon Compte</span>
             </a>
