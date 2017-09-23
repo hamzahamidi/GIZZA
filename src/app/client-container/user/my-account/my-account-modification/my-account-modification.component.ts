@@ -86,10 +86,10 @@ export class MyAccountModificationComponent implements OnInit {
     this.userDataService.setPassword(this.userForm.controls['password'].value);
     this.userDataService.setConnected(true);
 
-    this.router.navigate(['/user/my-account/home']);
+    this.router.navigate(['/purchase/user/my-account/home']);
   }
 
   cancel(){
-    this.router.navigate(['/user/my-account/home']);
+    this.router.navigate(['/purchase/user/my-account/home']);
   }
 }

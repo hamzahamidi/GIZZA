@@ -9,9 +9,12 @@
           <div *ngIf="!userDataService.getConnected()
                       && routerDataService.getRedirected()
                       && routerDataService.getLastVisitedUrl() == '/purchase/shopping-cart-validation'"
-               id="notificationError"
                class="col-lg-offset-3 col-lg-6 alert alert-danger text-center">
             Merci vous identifier afin de valider votre commande
+          </div>
+          <div *ngIf="!loginValid"
+               class="col-lg-offset-3 col-lg-6 alert alert-danger text-center">
+            Email ou mot de passe non valides
           </div>
           <div class="col-lg-offset-3 col-lg-6 jumbotron">
             <div class="row">
@@ -59,8 +62,6 @@
               | Pas de compte?
               <a routerLink="/purchase/user/registration" routerLinkActive="active">Je m'inscris</a>
             </div>
-            <br>
-            <div *ngIf="loginInvalid" class="alert alert-danger">Nom d'utilisateur ou mot de passe invalide</div>
           </div>
         </div>
       </div>

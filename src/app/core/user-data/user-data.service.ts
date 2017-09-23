@@ -11,6 +11,7 @@ export class UserDataService{
   private password: string;
   private connected: boolean;
   private role: string;
+  private token: string;
   private reductionCode: string;
 
   constructor(){
@@ -22,6 +23,7 @@ export class UserDataService{
     this.password = '';
     this.connected = false;
     this.role = '';
+    this.token = '';
     this.reductionCode = '';
   }
 
@@ -55,6 +57,10 @@ export class UserDataService{
 
   public getRole(){
     return this.role;
+  }
+
+  public getToken(){
+    return this.token;
   }
 
   public getReductionCode(){
@@ -93,6 +99,10 @@ export class UserDataService{
     this.role = role;
   }
 
+  public setToken(token: string){
+    this.token = token;
+  }
+
   public setReductionCode(reductionCode: string){
     this.reductionCode = reductionCode;
   }
@@ -105,6 +115,7 @@ export class UserDataService{
     this.setPassword('');
     this.setConnected(false);
     this.setRole('');
+    this.setToken('');
     this.setReductionCode('');
   }
 }

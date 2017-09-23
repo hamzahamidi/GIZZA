@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   deconnexion(){
     this.userDataService.initUserDataService();
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['/purchase/user/login']);
   }
 }
 

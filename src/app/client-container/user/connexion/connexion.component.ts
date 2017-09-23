@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserDataService } from '../../../core/user-data/user-data.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { RouterDataService } from '../../../core/router-data/router-data.service';
-import { ConnexionService } from './connexion.service';
+import {UserService} from '../user.service';
+
+import * as JWT from 'jwt-decode';
 
 @Component({
   selector: 'app-connexion',
@@ -10,7 +12,7 @@ import { ConnexionService } from './connexion.service';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit, OnDestroy {
-  loginInvalid: boolean;
+  loginValid: boolean = true;
 
   model = {
     email: '',
@@ -18,8 +20,9 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   };
 
   constructor(public userDataService: UserDataService,
-    public routerDataService: RouterDataService,
-    private router: Router, private connexionService: ConnexionService) { }
+              public routerDataService: RouterDataService,
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {}
 
@@ -52,13 +55,25 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.connexionService.authUser(this.model.email, this.model.password).subscribe(resp => {
-      if (!resp) {
-        this.loginInvalid = true;
-      } else {
-        this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
+    this.userService.login(this.model.email, this.model.password).subscribe(data =>{
+      if(data.res != null){
+
+        this.loginValid = true;
+
+        let token = data.res.token;
+        let decodedToken = JWT(token);
+
+        this.userDataService.setToken(token);
+        this.userDataService.setEmail(decodedToken['username']);
+        this.userDataService.setRole(decodedToken['role']);
+
+        // store username and jwt token in local storage to keep user logged in between page refreshes
+        //localStorage.setItem('currentUser', JSON.stringify({ decodedToken['username'], token: token }));
+
         this.userDataService.setConnected(true);
-        this.userDataService.setEmail(this.model.email);
+        this.router.navigate([this.routerDataService.getLastVisitedUrl()]);
+      }else{
+        this.loginValid = false;
       }
     });
   }

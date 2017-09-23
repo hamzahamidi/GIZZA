@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { RouterDataService } from './core/router-data/router-data.service';
-import { ConnexionService } from './client-container/user/connexion/connexion.service';
 import * as JWT from 'jwt-decode';
 import { UserDataService } from './core/user-data/user-data.service';
 
@@ -16,7 +15,6 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
     private routerDataService: RouterDataService,
-    private user: ConnexionService,
     public userDataService: UserDataService) {
 /*
     this.jwt = localStorage.getItem('currentUser');

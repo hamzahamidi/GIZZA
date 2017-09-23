@@ -7,6 +7,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReinitialiseComponent } from './reinitialise/reinitialise.component';
+import {UserService} from './user.service';
 
 @NgModule({
   imports: [
@@ -20,5 +21,6 @@ import { ReinitialiseComponent } from './reinitialise/reinitialise.component';
                   UserComponent,
                   RegistrationComponent,
                   ReinitialiseComponent],
+  providers: [UserService]
 })
 export class UserModule { }
