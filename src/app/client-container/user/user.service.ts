@@ -6,11 +6,13 @@ import { gizzaBackEndAPIConfig } from '../../shared/gizzaBackEndAPIConfig';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {UserDataService} from '../../core/user-data/user-data.service';
 
 @Injectable()
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private userDataService: UserDataService) { }
 
 
   public login(username: string, password: string): Observable<any>{
@@ -21,6 +23,7 @@ export class UserService {
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                .set('Authorization', 'Bearer ' + this.userDataService.getToken())
     };
 
     return this.http.post( gizzaBackEndAPIConfig.connexionUserUrl, body.toString(), options)
@@ -52,6 +55,7 @@ export class UserService {
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                .set('Authorization', 'Bearer ' + this.userDataService.getToken())
     };
 
     return this.http.post( gizzaBackEndAPIConfig.newUserUrl, body.toString(), options)
