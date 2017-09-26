@@ -62,7 +62,8 @@ export class ConnexionComponent implements OnInit, OnDestroy {
 
         let token = data.res.token;
         let decodedToken = JWT(token);
-
+        localStorage.setItem('currentUser', JSON.stringify({ username: this.model.email, token: token }));
+        
         this.userDataService.setToken(token);
         this.userDataService.setEmail(decodedToken['username']);
         this.userDataService.setRole(decodedToken['role']);

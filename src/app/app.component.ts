@@ -35,6 +35,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const jwt = localStorage.getItem('currentUser');
+    if (jwt) {
+      const jwtObject = JSON.parse(jwt);
+      let decodedJwt: any;
+      decodedJwt = jwt && JWT(jwtObject.token);
+      if (jwtObject.token) {
+        if ((new Date().getTime() / 1000) < decodedJwt.exp) {
+          this.userDataService.setConnected(true);
+          this.userDataService.setToken(decodedJwt);
+          this.userDataService.setEmail(decodedJwt.sub);
+          this.userDataService.setRole(decodedJwt.role);
+          // console.log("comparaison", (new Date().getTime() / 1000 - 9000) > decodedJwt.exp);
+        }
+      }
+    }
     this.router.events
       .filter(navigationEnds => navigationEnds instanceof NavigationEnd)
       .pairwise().subscribe(navigationEnds => {
