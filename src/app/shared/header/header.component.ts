@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   deconnexion(){
+    localStorage.removeItem('currentUser');
     this.userDataService.initUserDataService();
     this.router.navigate(['/purchase/user/login']);
   }
