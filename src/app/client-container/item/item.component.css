@@ -227,10 +227,10 @@ h5 {
 
 .shopping-cart {
     position: fixed;
-    top: 450px;
-    right: 50px;
     background-color: white;
     width: 250px;
+    top: 350px;
+    right: 15px;
 }
 
 @media only screen and (max-width: 1200px) {
