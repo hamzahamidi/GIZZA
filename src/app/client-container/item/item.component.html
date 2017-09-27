@@ -11,10 +11,10 @@
 <app-shopping-cart class="shopping-cart" id="shopping-cart"></app-shopping-cart>
 <div class="sub-container">
     <div class="row">
-        <div *ngFor="let item_quantity of items_quantity " class=" .col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 container-card ">
+        <div *ngFor="let item_quantity of items_quantity ; let i = index " class=" .col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 container-card ">
             <div class="card">
                 <div class="card-block">
-                    <h3 class="card-title">{{item_quantity.item.title}}</h3>
+                    <h3 class="card-title">{{item_quantity.item.title}} <span *ngIf="type == DrinkExample">{{quantity[i]}}</span></h3>
                     <img class="card-img-top " src="{{item_quantity.item.picture}} "><br/>
 
                     <p class="card-text">{{item_quantity.item.description}}</p>

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Item, PIZZACATEGORIES, PIZZAS, BOISSONS, DESSERTS, TypeItem } from '../model/model';
 import { ItemService } from '../service/item.service';
@@ -11,14 +11,15 @@ import * as $ from 'jquery';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
-
+export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
+  quantity = [0.75, 1.5, 0.33, 1.5, 0.33, 0.33, 0.33, 0.33, 0.33, 0.33];
   // public imgSrc = 'https://cdn.pizzahut.fr/website/var/tmp/image-thumbnails/0/1000/thumb__header_small/banner-produit--pepperoni-lovers4-.png';
   public imgSrc = '../../../../assets/image/banner.png';
   items: Item[] = [];
-  items_quantity: {item: Item, quantity: number}[] = [];
+  items_quantity: { item: Item, quantity: number }[] = [];
   categories: Category[] = [];
   type: TypeItem;
+  DrinkExample: TypeItem = TypeItem.DRINK;
 
   //Attribute for shopping-cart position
   shoppingCart: any;
@@ -59,8 +60,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
     this.shoppingCartPosition = this.shoppingCart.getBoundingClientRect().top;
 
     $(window).on('scroll',
-        {shoppingCart: this.shoppingCart, shoppingCartPosition: this.shoppingCartPosition},
-        this.placeShoppingCartOnScroll);
+      { shoppingCart: this.shoppingCart, shoppingCartPosition: this.shoppingCartPosition },
+      this.placeShoppingCartOnScroll);
   }
 
   ngOnDestroy(): void {
@@ -88,24 +89,24 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
 
 
   //Permet d'obtenir les catégories en fonction du type de produits demandé
-  getCategories(type: string){
+  getCategories(type: string) {
     this.itemService.getCategories().subscribe(data => {
-      for(let i = 0; i < data.res.data.length; i++){
-        if(data.res.data[i].type == type)
+      for (let i = 0; i < data.res.data.length; i++) {
+        if (data.res.data[i].type == type)
           this.categories.push(new Category(data.res.data[i].id, data.res.data[i].libelle))
       }
     });
     this.categories.push(new Category(0, "Tous"))
   }
 
-  getItems(){
+  getItems() {
 
     this.itemService.getItems(this.type).subscribe(data => {
 
       this.items = [];
       this.items_quantity = [];
 
-      for(let i = 0; i < data.res.data.length; i++){
+      for (let i = 0; i < data.res.data.length; i++) {
         this.items.push(new Item(
           data.res.data[i].id,
           data.res.data[i].nom,
@@ -119,23 +120,23 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
       }
 
       //Remplissage du tableau utilisé par le composant
-      for(let i = 0; i < this.items.length; i++){
-        this.items_quantity.push({item: this.items[i], quantity: 1});
+      for (let i = 0; i < this.items.length; i++) {
+        this.items_quantity.push({ item: this.items[i], quantity: 1 });
       }
     });
   }
 
-  getItemsByCategory(cat: Category){
+  getItemsByCategory(cat: Category) {
 
-    if(cat.libelle == "Tous"){
+    if (cat.libelle == "Tous") {
       this.getItems();
-    }else{
+    } else {
       this.itemService.getItemsByCategory(cat.id).subscribe(data => {
 
         this.items = [];
         this.items_quantity = [];
 
-        for(let i = 0; i < data.res.produits.length; i++){
+        for (let i = 0; i < data.res.produits.length; i++) {
           this.items.push(new Item(
             data.res.produits[i].id,
             data.res.produits[i].nom,
@@ -149,14 +150,14 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
         }
 
         //Remplissage du tableau utilisé par le composant
-        for(let i = 0; i < this.items.length; i++){
-          this.items_quantity.push({item: this.items[i], quantity: 1});
+        for (let i = 0; i < this.items.length; i++) {
+          this.items_quantity.push({ item: this.items[i], quantity: 1 });
         }
       });
     }
   }
 
-  placeShoppingCartOnScroll(prop){
+  placeShoppingCartOnScroll(prop) {
     const shoppingCart = prop.data.shoppingCart;
     const shoppingCartPosition = prop.data.shoppingCartPosition;
 
@@ -169,3 +170,5 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy{
     }
   }
 }
+
+
