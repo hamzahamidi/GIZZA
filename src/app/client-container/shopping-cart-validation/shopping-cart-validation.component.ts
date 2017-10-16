@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ShoppingCartDataService} from '../shopping-cart/shopping-cart-data.service';
-import {Item} from '../item/model';
+import {Item} from '../model/model';
+import {UserDataService} from '../../core/user-data/user-data.service';
+import {Router} from '@angular/router';
+import {RouterDataService} from '../../core/router-data/router-data.service';
 
 @Component({
   selector: 'app-shopping-cart-validation',
@@ -9,13 +12,31 @@ import {Item} from '../item/model';
 })
 export class ShoppingCartValidationComponent implements OnInit {
 
-  public couponCode: string = '';
-  constructor(public shoppingCartDataService : ShoppingCartDataService) { }
+  constructor(public shoppingCartDataService : ShoppingCartDataService,
+              public userDataService: UserDataService,
+              private routerDataService: RouterDataService,
+              private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(!this.userDataService.getConnected()){
+      this.routerDataService.setRedirected(true);
+      this.router.navigate(['/purchase/user/login']);
+    }
+  }
 
   order(){
-    console.log('You have sent your order');
+    this.router.navigate(['/purchase/order-recapitulation']);
+  }
+
+  carryOnPurchase(){
+
+    const index = this.shoppingCartDataService.getShoppingItems()
+                    .findIndex(_shoppingItem => _shoppingItem.quantity == 0);
+
+    if(index >= 0)
+      this.shoppingCartDataService.removeShoppingItem(this.shoppingCartDataService.getShoppingItems()[index].item);
+
+    this.router.navigate(['/purchase/pizza'])
   }
 
   removeOneShoppingItem(item: Item){
@@ -28,6 +49,14 @@ export class ShoppingCartValidationComponent implements OnInit {
 
   removeItem(item: Item){
     this.shoppingCartDataService.removeShoppingItem(item);
+  }
+
+  onCouponSubmit(couponCode: string){
+    this.userDataService.setReductionCode(couponCode);
+  }
+
+  modifyCoupon(){
+    this.userDataService.setReductionCode('');
   }
 
 }

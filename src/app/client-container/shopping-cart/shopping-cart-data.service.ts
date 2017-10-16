@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Item, TypeItem} from '../item/model';
+import {Item, TypeItem} from '../model/model';
 
 @Injectable()
 export class ShoppingCartDataService {
@@ -55,6 +55,10 @@ export class ShoppingCartDataService {
       total += this.shoppingItems[i].item.price * this.shoppingItems[i].quantity;
     }
     return total;
+  }
+
+  public initShoppinCart(){
+    this.setShoppingItems([]);
   }
 
 }

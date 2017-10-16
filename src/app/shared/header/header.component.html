@@ -5,8 +5,8 @@
         <img class="logo-img" src="../../../../assets/logo/gizza_logo_595_496.png" alt="gizza logo" style="z-index:3000; position:absolute; top: 10px;">
       </a>
     </div>
-    <div *ngIf="userDataService.getPseudo().length == 0; else elseBlock;" class="col-xs-2">
-        <a routerLink="/user/login" routerLinkActive="active">
+    <div *ngIf="userDataService.getEmail().length == 0; else elseBlock;" class="col-xs-2">
+        <a routerLink="/purchase/user/login" routerLinkActive="active">
         <span class="glyphicon glyphicon-user"></span>
         <span class="monCompteText">Mon Compte</span>
       </a>
@@ -18,12 +18,12 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="true">
-          Bonjour {{userDataService.getPseudo()}}
+          Bonjour {{userDataService.getEmail()}}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
-            <a routerLink="/user/registration" routerLinkActive="active">
+            <a routerLink="/purchase/user/my-account/home">
               <span class="glyphicon glyphicon-user"></span>
               <span class="monCompteText">Mon Compte</span>
             </a>
@@ -35,6 +35,15 @@
               <span class="monCompteText">Déconnexion</span>
             </a>
           </li>
+          <ng-container *ngIf="userDataService.getRole() == 'ADMIN'">
+            <li role="separator" class="divider"></li>
+            <li>
+              <a routerLink="/admin">
+                <span class="glyphicon glyphicon-lock"></span>
+                <span class="monCompteText">Administration</span>
+              </a>
+            </li>
+          </ng-container>
         </ul>
       </div>
     </ng-template>

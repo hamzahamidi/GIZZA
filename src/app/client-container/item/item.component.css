@@ -3,82 +3,82 @@
     width: calc(100% - 300px);
 }
 
-
-a.btn-default{
-  border-radius: 0px;
-  border:none;
-  text-transform: uppercase;
-  color: #5F5B57;
-  font-family: Avenir;
-  font-style: normal;
-  background-color: #d5e4e3;
+a.btn-default {
+    border-radius: 0px;
+    border: none;
+    text-transform: uppercase;
+    color: #5F5B57;
+    font-family: Avenir;
+    font-style: normal;
+    background-color: #d5e4e3;
 }
 
-div.card{
-  background-color: #FDFAD5;
-  border-radius: 10px;
-  width: 320px;
-  height: 427px;
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  -o-perspective: 1000;
-  perspective: 1000;
+div.card {
+    background-color: #FDFAD5;
+    border-radius: 10px;
+    width: 320px;
+    height: 427px;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
 }
 
-.card-title{
-  font-family: Myriad;
-  font-style: normal;
-  color: #5F5B57;
+.card-title {
+    font-family: Myriad;
+    font-style: normal;
+    color: #5F5B57;
 }
 
-.form-control.input-number{
-  text-align: center;
-  font-family: Avenir;
-  font-style: normal;
-  font-size: 15px;
-  color: #5F5B57;
-  border-radius: 0px;
-  border:none;
-  width: 60px;
-  background-color: #F9FEFE;
+.form-control.input-number {
+    text-align: center;
+    font-family: Avenir;
+    font-style: normal;
+    font-size: 15px;
+    color: #5F5B57;
+    border-radius: 0px;
+    border: none;
+    width: 60px;
+    background-color: #F9FEFE;
 }
 
-.price{
-  font-family: Georgia;
-  font-style: normal;
-  font-size: 25px;
-  color: #5F5B57;
-  text-align: right;
+.price {
+    font-family: Georgia;
+    font-style: normal;
+    font-size: 25px;
+    color: #5F5B57;
+    text-align: right;
 }
 
-.card-text{
-  font-family: Avenir;
-  font-style: normal;
-  color: #5F5B57;
+.card-text {
+    font-family: Avenir;
+    font-style: normal;
+    color: #5F5B57;
 }
 
-.btn.btn-default.btn-number{
-  border-radius: 0px;
-  border:none;
+.btn.btn-default.btn-number {
+    border-radius: 0px;
+    border: none;
 }
 
-.btn.btn-default.btn-number:focus{
-  outline: none;
+.btn.btn-default.btn-number:focus {
+    outline: none;
 }
+
 .container-card {
     margin-bottom: 15px;
     margin-top: 15px;
 }
 
-.btn.btn-default.btnCart{
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  border:none;
+.btn.btn-default.btnCart {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
 }
 
 .btn.btn-default.btnCart:focus {
-  outline: none;
+    outline: none;
 }
 
 .flip-container {
@@ -86,11 +86,10 @@ div.card{
     -moz-perspective: 1000;
     -o-perspective: 1000;
     perspective: 1000;
-  background-color: #FDFAD5;
-  border-radius: 10px;
- /* border-radius: .28571429rem;*/
-  /*box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;*/
-
+    background-color: #FDFAD5;
+    border-radius: 10px;
+    /* border-radius: .28571429rem;*/
+    /*box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;*/
 }
 
 .flip-container:hover .flipper,
@@ -198,7 +197,7 @@ h5 {
 
 .card-img-top {
     display: block;
-    width:60%;
+    width: 60%;
     height: auto;
 }
 
@@ -227,11 +226,11 @@ h5 {
 }
 
 .shopping-cart {
-    position: fixed;
-    top: 350px;
-    right: 50px;
+    position: fixed !important;
     background-color: white;
-    width: 300px;
+    width: 250px;
+    top: 350px;
+    right: 15px!important;
 }
 
 @media only screen and (max-width: 1200px) {

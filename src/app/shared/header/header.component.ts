@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserDataService} from '../../core/user-data.service';
-import {User} from '../user';
+import {UserDataService} from '../../core/user-data/user-data.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -16,8 +15,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   deconnexion(){
+    localStorage.removeItem('currentUser');
     this.userDataService.initUserDataService();
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['/purchase/user/login']);
   }
 }
 

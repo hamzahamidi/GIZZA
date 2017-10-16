@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/filter';
+import {RouterDataService} from '../../core/router-data/router-data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-container',
@@ -13,14 +14,8 @@ export class ClientContainerComponent implements OnInit {
 
   currentUrl: string = '';
 
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+  constructor(public routerDataService: RouterDataService,
+              public router: Router) {}
 
-  ngOnInit() {
-    this.router.events
-      .filter(navigationEnds => navigationEnds instanceof NavigationEnd)
-      .pairwise().subscribe(navigationEnds => {
-      this.currentUrl = navigationEnds[1]['url'];
-    });
-  }
+  ngOnInit() {}
 }

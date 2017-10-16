@@ -1,13 +1,13 @@
-import { ContainerModule } from './client-container.module';
+import { ClientContainerModule } from './client-container.module';
 
 describe('ContainerModule', () => {
-  let containerModule: ContainerModule;
+  let clientContainerModule: ClientContainerModule;
 
   beforeEach(() => {
-    containerModule = new ContainerModule();
+    clientContainerModule = new ClientContainerModule();
   });
 
   it('should create an instance', () => {
-    expect(containerModule).toBeTruthy();
+    expect(clientContainerModule).toBeTruthy();
   });
 });
